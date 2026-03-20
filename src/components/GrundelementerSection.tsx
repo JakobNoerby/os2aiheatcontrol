@@ -99,7 +99,7 @@ const CorePartCard = ({ part, index }: { part: CorePart; index: number }) => {
   );
 };
 
-const CorePartsSection = () => {
+const GrundelementerSection = () => {
   const headingRef = useScrollReveal<HTMLHeadingElement>();
 
   return (
