@@ -429,32 +429,35 @@ const RelationshipGraph = () => {
             const isHighlighted = selected === edge.from || selected === edge.to;
 
             return (
-              <g key={edge.id}>
+              <g key={edge.id} onClick={(e) => { e.stopPropagation(); setEditingEdge(isEditing ? null : edge.id); }} className="cursor-pointer">
+                {/* Wide invisible hit area for the line */}
                 <line
                   x1={start.x} y1={start.y} x2={end.x} y2={end.y}
-                  stroke={isHighlighted ? "hsl(210 45% 38% / 0.5)" : "hsl(215 12% 50% / 0.2)"}
-                  strokeWidth={isHighlighted ? 2 : 1.5}
-                  markerEnd={isHighlighted ? "url(#arrow-hl)" : "url(#arrow)"}
+                  stroke="transparent" strokeWidth={14}
                 />
-                {/* Clickable label */}
-                <g
-                  onClick={(e) => { e.stopPropagation(); setEditingEdge(isEditing ? null : edge.id); }}
-                  className="cursor-pointer"
+                {/* Visible line */}
+                <line
+                  x1={start.x} y1={start.y} x2={end.x} y2={end.y}
+                  stroke={isEditing ? "hsl(210 45% 38% / 0.6)" : isHighlighted ? "hsl(210 45% 38% / 0.5)" : "hsl(215 12% 50% / 0.2)"}
+                  strokeWidth={isEditing ? 2.5 : isHighlighted ? 2 : 1.5}
+                  markerEnd={isEditing ? "url(#arrow-hl)" : isHighlighted ? "url(#arrow-hl)" : "url(#arrow)"}
+                  pointerEvents="none"
+                />
+                {/* Label */}
+                <rect
+                  x={midX - 42} y={midY - 10} width={84} height={20} rx={4}
+                  fill={isEditing ? "hsl(210 45% 38% / 0.08)" : "hsl(210 20% 98%)"}
+                  stroke={isEditing ? "hsl(210 45% 38% / 0.3)" : "hsl(210 16% 88%)"}
+                  strokeWidth={0.8}
+                />
+                <text
+                  x={midX} y={midY + 4} textAnchor="middle"
+                  fill={isEditing ? "hsl(210 45% 38%)" : "hsl(215 12% 50%)"}
+                  fontFamily="ui-monospace, monospace" fontSize={9}
+                  pointerEvents="none"
                 >
-                  <rect
-                    x={midX - 42} y={midY - 10} width={84} height={20} rx={4}
-                    fill={isEditing ? "hsl(210 45% 38% / 0.08)" : "hsl(210 20% 98%)"}
-                    stroke={isEditing ? "hsl(210 45% 38% / 0.3)" : "hsl(210 16% 88%)"}
-                    strokeWidth={0.8}
-                  />
-                  <text
-                    x={midX} y={midY + 4} textAnchor="middle"
-                    fill={isEditing ? "hsl(210 45% 38%)" : "hsl(215 12% 50%)"}
-                    fontFamily="ui-monospace, monospace" fontSize={9}
-                  >
-                    {edge.label}
-                  </text>
-                </g>
+                  {edge.label}
+                </text>
               </g>
             );
           })}
