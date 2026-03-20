@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Source Sans 3"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Inter', '"Source Sans 3"', 'Arial', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -60,7 +60,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // OS2 custom tokens
         "os2-ink": "hsl(var(--os2-ink))",
         "os2-blue": "hsl(var(--os2-blue))",
         "os2-mint": "hsl(var(--os2-mint))",
