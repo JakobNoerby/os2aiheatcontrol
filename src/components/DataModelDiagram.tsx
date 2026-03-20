@@ -194,22 +194,13 @@ const DataModelDiagram = () => {
           </div>
         </div>
 
-        {/* Relationship note */}
-        <div className="mt-10 rounded-lg border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
-          <p className="font-medium text-foreground">Relationer</p>
-          <ul className="mt-2 space-y-1 text-xs font-mono">
-            <li>rec:Building → rec:hasPoint → brick:Temperature_Sensor</li>
-            <li>rec:Room → rec:locatedIn → rec:Building</li>
-            <li>brick:Temperature_Sensor → brick:isPointOf → rec:Room</li>
-            <li>brick:Temperature_Sensor → brick:hasTimeseriesId → brick:TimeseriesReference</li>
-            <li>os2:Schedule → rec:servesBuilding → rec:Building</li>
-            <li>os2:Setpoint → rec:servesBuilding → rec:Building</li>
-          </ul>
-          <div className="mt-3 flex gap-4 text-xs">
-            <a href="https://docs.brickschema.org/extra/brick-rec.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-foreground transition-colors">
-              Brick + REC integration <ExternalLink className="h-3 w-3" />
-            </a>
-          </div>
+        {/* Visual relationship graph */}
+        <RelationshipGraph />
+
+        <div className="mt-4 flex justify-center text-xs">
+          <a href="https://docs.brickschema.org/extra/brick-rec.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors">
+            Brick + REC integration <ExternalLink className="h-3 w-3" />
+          </a>
         </div>
       </div>
     </section>
