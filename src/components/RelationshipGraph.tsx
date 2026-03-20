@@ -294,8 +294,8 @@ const RelationshipGraph = () => {
   /* --- Delete node --- */
   const deleteNode = useCallback(
     (nodeId: string) => {
-      setNodes((prev) => prev.filter((n) => n.id !== nodeId));
-      setEdges((prev) => prev.filter((e) => e.from !== nodeId && e.to !== nodeId));
+      setNodesWrapped((prev) => prev.filter((n) => n.id !== nodeId));
+      setEdgesWrapped((prev) => prev.filter((e) => e.from !== nodeId && e.to !== nodeId));
       setSelected(null);
     },
     []
