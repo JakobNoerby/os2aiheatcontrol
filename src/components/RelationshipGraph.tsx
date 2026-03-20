@@ -167,6 +167,8 @@ const RelationshipGraph = () => {
   const [showPalette, setShowPalette] = useState(false);
   const [edgeMode, setEdgeMode] = useState<string | null>(null);
   const [editingEdge, setEditingEdge] = useState<string | null>(null);
+  const [editingNode, setEditingNode] = useState<string | null>(null);
+  const [editingNodeLabel, setEditingNodeLabel] = useState("");
 
   // Load diagram from database on mount
   useEffect(() => {
