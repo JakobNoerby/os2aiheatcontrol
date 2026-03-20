@@ -114,9 +114,9 @@ const defaultEdges: GraphEdge[] = [
 /* ------------------------------------------------------------------ */
 
 const ontologyFill = {
-  rec: { bg: "hsl(210 45% 70% / 0.08)", stroke: "hsl(210 45% 70% / 0.30)", text: "hsl(210 45% 50%)" },
-  brick: { bg: "hsl(183 30% 77% / 0.12)", stroke: "hsl(183 30% 65% / 0.40)", text: "hsl(183 30% 40%)" },
-  os2: { bg: "hsl(195 6% 85% / 0.15)", stroke: "hsl(195 6% 75% / 0.40)", text: "hsl(200 8% 42%)" },
+  rec: { bg: "hsl(210 46% 69% / 0.08)", stroke: "hsl(210 46% 69% / 0.30)", text: "hsl(210 46% 50%)" },
+  brick: { bg: "hsl(180 22% 80% / 0.12)", stroke: "hsl(180 22% 70% / 0.35)", text: "hsl(180 22% 40%)" },
+  os2: { bg: "hsl(0 0% 82% / 0.15)", stroke: "hsl(0 0% 75% / 0.35)", text: "hsl(0 0% 40%)" },
 } as const;
 
 const ontologyBadge = {
