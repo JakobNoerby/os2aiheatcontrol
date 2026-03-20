@@ -581,73 +581,79 @@ const RelationshipGraph = () => {
         </svg>
       </div>
 
-      {/* Edge editor popover */}
-      {editingEdge && (() => {
-        const edge = edges.find((e) => e.id === editingEdge);
-        if (!edge) return null;
-        return (
-          <div className="mt-3 rounded-xl border border-border bg-card p-4 shadow-md">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-foreground">Redigér relation</span>
-              <button onClick={() => setEditingEdge(null)} className="rounded p-0.5 hover:bg-muted">
-                <X className="h-3.5 w-3.5 text-muted-foreground" />
-              </button>
-            </div>
-            <p className="text-[10px] text-muted-foreground mb-3 uppercase tracking-wide">Endpoints</p>
-            <div className="flex flex-col gap-2 mb-3 sm:flex-row sm:items-center sm:gap-3">
-              <div className="flex-1">
-                <label className="text-[10px] text-muted-foreground mb-1 block">Fra</label>
-                <select
-                  value={edge.from}
-                  onChange={(e) => changeEdgeEndpoint(edge.id, "from", e.target.value)}
-                  className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-[11px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                >
-                  {nodes.map((n) => (
-                    <option key={n.id} value={n.id}>{n.label}</option>
-                  ))}
-                </select>
-              </div>
-              <span className="text-muted-foreground text-xs hidden sm:block pt-4">→</span>
-              <div className="flex-1">
-                <label className="text-[10px] text-muted-foreground mb-1 block">Til</label>
-                <select
-                  value={edge.to}
-                  onChange={(e) => changeEdgeEndpoint(edge.id, "to", e.target.value)}
-                  className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-[11px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                >
-                  {nodes.map((n) => (
-                    <option key={n.id} value={n.id}>{n.label}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
+      {/* Edge editor dialog */}
+      <Dialog open={!!editingEdge} onOpenChange={(open) => { if (!open) setEditingEdge(null); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm">Redigér relation</DialogTitle>
+          </DialogHeader>
+          {editingEdge && (() => {
+            const edge = edges.find((e) => e.id === editingEdge);
+            if (!edge) return null;
+            return (
+              <div className="space-y-4">
+                <div>
+                  <p className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wide">Endpoints</p>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                    <div className="flex-1">
+                      <label className="text-[10px] text-muted-foreground mb-1 block">Fra</label>
+                      <select
+                        value={edge.from}
+                        onChange={(e) => changeEdgeEndpoint(edge.id, "from", e.target.value)}
+                        className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-[11px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      >
+                        {nodes.map((n) => (
+                          <option key={n.id} value={n.id}>{n.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <span className="text-muted-foreground text-xs hidden sm:block pt-4">→</span>
+                    <div className="flex-1">
+                      <label className="text-[10px] text-muted-foreground mb-1 block">Til</label>
+                      <select
+                        value={edge.to}
+                        onChange={(e) => changeEdgeEndpoint(edge.id, "to", e.target.value)}
+                        className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-[11px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      >
+                        {nodes.map((n) => (
+                          <option key={n.id} value={n.id}>{n.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-            <p className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wide">Relationstype</p>
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {relationLabels.map((rel) => (
+                <div>
+                  <p className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wide">Relationstype</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {relationLabels.map((rel) => (
+                      <button
+                        key={rel}
+                        onClick={() => changeEdgeLabel(edge.id, rel)}
+                        className={cn(
+                          "rounded-md border px-2 py-1 text-[11px] font-mono transition-colors active:scale-[0.97]",
+                          edge.label === rel
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border bg-background text-foreground hover:bg-muted"
+                        )}
+                      >
+                        {rel}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <button
-                  key={rel}
-                  onClick={() => changeEdgeLabel(edge.id, rel)}
-                  className={cn(
-                    "rounded-md border px-2 py-1 text-[11px] font-mono transition-colors active:scale-[0.97]",
-                    edge.label === rel
-                      ? "border-primary bg-primary/10 text-primary"
-                      : "border-border bg-background text-foreground hover:bg-muted"
-                  )}
+                  onClick={() => deleteEdge(edge.id)}
+                  className="inline-flex items-center gap-1 rounded-md border border-destructive/30 bg-destructive/5 px-2 py-1 text-[11px] font-medium text-destructive hover:bg-destructive/10 active:scale-[0.97]"
                 >
-                  {rel}
+                  <Trash2 className="h-3 w-3" /> Slet relation
                 </button>
-              ))}
-            </div>
-            <button
-              onClick={() => deleteEdge(edge.id)}
-              className="inline-flex items-center gap-1 rounded-md border border-destructive/30 bg-destructive/5 px-2 py-1 text-[11px] font-medium text-destructive hover:bg-destructive/10 active:scale-[0.97]"
-            >
-              <Trash2 className="h-3 w-3" /> Slet relation
-            </button>
-          </div>
-        );
-      })()}
+              </div>
+            );
+          })()}
+        </DialogContent>
+      </Dialog>
 
       {/* Legend */}
       <div className="mt-3 flex flex-wrap justify-center gap-4 text-[11px] text-muted-foreground">
