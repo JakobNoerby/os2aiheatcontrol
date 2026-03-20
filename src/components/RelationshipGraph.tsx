@@ -321,7 +321,7 @@ const RelationshipGraph = () => {
 
   /* --- Delete edge --- */
   const deleteEdge = useCallback((edgeId: string) => {
-    setEdges((prev) => prev.filter((e) => e.id !== edgeId));
+    setEdgesWrapped((prev) => prev.filter((e) => e.id !== edgeId));
     setEditingEdge(null);
   }, []);
 
