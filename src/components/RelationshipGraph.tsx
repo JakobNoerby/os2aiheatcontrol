@@ -167,6 +167,8 @@ const RelationshipGraph = () => {
   const [showPalette, setShowPalette] = useState(false);
   const [edgeMode, setEdgeMode] = useState<string | null>(null);
   const [editingEdge, setEditingEdge] = useState<string | null>(null);
+  const [editingNode, setEditingNode] = useState<string | null>(null);
+  const [editingNodeLabel, setEditingNodeLabel] = useState("");
 
   // Load diagram from database on mount
   useEffect(() => {
@@ -336,14 +338,27 @@ const RelationshipGraph = () => {
     setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, [field]: nodeId } : e)));
   }, []);
 
+  /* --- Open node editor --- */
+  const openNodeEditor = useCallback((nodeId: string) => {
+    const node = nodes.find((n) => n.id === nodeId);
+    if (!node) return;
+    setEditingNode(nodeId);
+    setEditingNodeLabel(node.label);
+  }, [nodes]);
+
+  /* --- Save node label --- */
+  const saveNodeLabel = useCallback(() => {
+    if (!editingNode || !editingNodeLabel.trim()) return;
+    setNodesWrapped((prev) => prev.map((n) => n.id === editingNode ? { ...n, label: editingNodeLabel.trim() } : n));
+    setEditingNode(null);
+  }, [editingNode, editingNodeLabel]);
+
   /* --- Click background to deselect --- */
   const handleBgClick = useCallback((e: React.MouseEvent) => {
-    // Only deselect if the click target is the SVG itself or the background
     if (dragging) return;
     if (e.target === e.currentTarget || (e.target as Element).tagName === "svg") {
       setSelected(null);
       setEditingEdge(null);
-      // Don't reset edgeMode on background click — let user click nodes
     }
   }, [dragging]);
 
@@ -557,6 +572,10 @@ const RelationshipGraph = () => {
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
+                onDoubleClick={(e) => {
+                  e.stopPropagation();
+                  if (!edgeMode) openNodeEditor(node.id);
+                }}
                 className={cn("cursor-grab", dragging === node.id && "cursor-grabbing", edgeMode && "cursor-pointer")}
               >
                 <rect
@@ -655,6 +674,71 @@ const RelationshipGraph = () => {
         </DialogContent>
       </Dialog>
 
+      {/* Node editor dialog */}
+      <Dialog open={!!editingNode} onOpenChange={(open) => { if (!open) setEditingNode(null); }}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm">Redigér node-label</DialogTitle>
+          </DialogHeader>
+          {editingNode && (() => {
+            const node = nodes.find((n) => n.id === editingNode);
+            if (!node) return null;
+            return (
+              <div className="space-y-4">
+                <div>
+                  <label className="text-[10px] text-muted-foreground mb-1 block uppercase tracking-wide">Label</label>
+                  <input
+                    type="text"
+                    value={editingNodeLabel}
+                    onChange={(e) => setEditingNodeLabel(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") saveNodeLabel(); }}
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    autoFocus
+                  />
+                </div>
+                <div>
+                  <p className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wide">Eller vælg fra palette</p>
+                  <div className="max-h-40 overflow-y-auto flex flex-wrap gap-1.5">
+                    {palette.map((p) => (
+                      <button
+                        key={p.label}
+                        onClick={() => {
+                          setEditingNodeLabel(p.label);
+                          setNodesWrapped((prev) => prev.map((n) => n.id === editingNode ? { ...n, label: p.label, ontology: p.ontology } : n));
+                          setEditingNode(null);
+                        }}
+                        className={cn(
+                          "rounded-md border px-2 py-1 text-[11px] font-mono transition-colors active:scale-[0.97]",
+                          node.label === p.label
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border bg-background text-foreground hover:bg-muted"
+                        )}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={saveNodeLabel}
+                    className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 active:scale-[0.97]"
+                  >
+                    <Check className="h-3 w-3" /> Gem
+                  </button>
+                  <button
+                    onClick={() => deleteNode(editingNode)}
+                    className="inline-flex items-center gap-1 rounded-md border border-destructive/30 bg-destructive/5 px-2 py-1.5 text-xs font-medium text-destructive hover:bg-destructive/10 active:scale-[0.97]"
+                  >
+                    <Trash2 className="h-3 w-3" /> Slet node
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
+        </DialogContent>
+      </Dialog>
+
       {/* Legend */}
       <div className="mt-3 flex flex-wrap justify-center gap-4 text-[11px] text-muted-foreground">
         {(["rec", "brick", "os2"] as const).map((key) => (
@@ -671,7 +755,7 @@ const RelationshipGraph = () => {
       </div>
 
       <p className="mt-2 text-center text-[10px] text-muted-foreground/50">
-        Træk noder for at flytte · Klik for at vælge · Brug værktøjslinjen til at tilføje klasser og forbindelser
+        Træk noder for at flytte · Dobbeltklik for at redigere · Brug værktøjslinjen til at tilføje klasser og forbindelser
       </p>
     </div>
   );
