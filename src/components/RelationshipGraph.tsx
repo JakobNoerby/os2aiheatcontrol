@@ -310,7 +310,7 @@ const RelationshipGraph = () => {
         return;
       }
       // create edge
-      setEdges((prev) => [
+      setEdgesWrapped((prev) => [
         ...prev,
         { id: nextId("edge"), from: edgeMode, to: nodeId, label: "hasPoint" },
       ]);
