@@ -281,7 +281,7 @@ const RelationshipGraph = () => {
       const id = nextId("node");
       const cx = (vbW / 2) + minX - NODE_W / 2 + Math.random() * 40 - 20;
       const cy = (vbH / 2) + minY - NODE_H / 2 + Math.random() * 40 - 20;
-      setNodes((prev) => [
+      setNodesWrapped((prev) => [
         ...prev,
         { id, label: item.label, ontology: item.ontology, x: Math.round(cx), y: Math.round(cy) },
       ]);
