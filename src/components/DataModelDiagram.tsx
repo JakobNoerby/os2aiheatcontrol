@@ -1,6 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
+import RelationshipGraph from "@/components/RelationshipGraph";
 
 interface Entity {
   name: string;
