@@ -8,49 +8,62 @@ const HeroSection = () => {
   const badgeRef = useScrollReveal<HTMLDivElement>(300);
 
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-28 sm:px-12 md:pt-36 md:pb-28">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid items-center gap-12 md:grid-cols-2">
+    <section className="relative overflow-hidden px-6 pb-24 pt-32 sm:px-12 md:pt-40 md:pb-32">
+      {/* Subtle background shape */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-os2-mint/20 blur-3xl" />
+        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-os2-blue/10 blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-5xl">
+        <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Left column — text */}
           <div>
-            <div ref={badgeRef} className="scroll-reveal mb-5 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+            <div
+              ref={badgeRef}
+              className="scroll-reveal mb-6 inline-flex items-center gap-2 rounded-full border border-os2-grey bg-os2-surface px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground"
+            >
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-os2-mint" />
               Open Source · Kommunalt ejet
             </div>
 
             <h1
               ref={titleRef}
-              className="scroll-reveal text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl"
-              style={{ lineHeight: 1.12 }}
+              className="scroll-reveal text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-[2.75rem]"
+              style={{ lineHeight: 1.15 }}
             >
               OS2 AI Heat Control
             </h1>
 
             <p
               ref={subtitleRef}
-              className="scroll-reveal mt-6 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+              className="scroll-reveal mt-6 max-w-lg text-pretty text-base leading-[1.7] text-muted-foreground sm:text-lg"
             >
               Intelligent varmestyring i kommunale bygninger — bygget på åbne
               standarder, fælles data og en referencealgoritme, som markedet kan
               bygge videre på.
             </p>
 
-            <div className="scroll-reveal mt-8 flex items-center gap-3 text-muted-foreground/60">
-              <Building2 className="h-5 w-5" />
-              <span className="text-xs tracking-widest uppercase">
+            <div className="scroll-reveal mt-10 flex items-center gap-3 text-muted-foreground/50">
+              <Building2 className="h-4 w-4" />
+              <span className="text-xs font-medium tracking-widest uppercase">
                 Bygning → Data → Algoritme → Styring
               </span>
-              <Thermometer className="h-5 w-5" />
+              <Thermometer className="h-4 w-4" />
             </div>
           </div>
 
-          {/* Right column — decorative illustration area */}
+          {/* Right column — clean logo area */}
           <div className="hidden items-center justify-center md:flex">
-            <div className="relative flex h-64 w-full flex-col items-center justify-center gap-6 rounded-2xl bg-secondary">
-              <img src={os2Logo} alt="OS2 — offentligt digitaliseringsfællesskab" className="h-16 w-auto" />
-              <div className="flex items-center gap-4 text-muted-foreground/30">
-                <Building2 className="h-10 w-10" />
-                <Thermometer className="h-10 w-10" />
+            <div className="relative flex h-64 w-full flex-col items-center justify-center gap-6 rounded-2xl border border-os2-grey bg-os2-surface/60">
+              <img
+                src={os2Logo}
+                alt="OS2 — offentligt digitaliseringsfællesskab"
+                className="h-16 w-auto"
+              />
+              <div className="flex items-center gap-4 text-os2-blue/40">
+                <Building2 className="h-8 w-8" />
+                <Thermometer className="h-8 w-8" />
               </div>
             </div>
           </div>

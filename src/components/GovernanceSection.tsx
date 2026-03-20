@@ -6,7 +6,8 @@ interface Role {
   icon: React.ElementType;
   actor: string;
   responsibilities: string[];
-  color: "primary" | "accent" | "muted";
+  accent: string;
+  iconBg: string;
 }
 
 const roles: Role[] = [
@@ -19,7 +20,8 @@ const roles: Role[] = [
       "Sikrer åben licens, dokumentation og kvalitetskrav",
       "Faciliterer videndeling og erfaringsudveksling mellem kommuner",
     ],
-    color: "primary",
+    accent: "border-os2-blue/30 bg-os2-blue/[0.03]",
+    iconBg: "bg-os2-blue/10 text-os2-blue",
   },
   {
     icon: Building2,
@@ -30,7 +32,8 @@ const roles: Role[] = [
       "Godkender løsningen ift. lokal IT-sikkerhedspolitik",
       "Kan vælge leverandør til installation, drift og support",
     ],
-    color: "primary",
+    accent: "border-os2-blue/30 bg-os2-blue/[0.03]",
+    iconBg: "bg-os2-blue/10 text-os2-blue",
   },
   {
     icon: Wrench,
@@ -41,7 +44,8 @@ const roles: Role[] = [
       "Overholder connector-specifikationer og kvalitetskrav fra OS2",
       "Bidrager til fælles test- og certificeringsproces",
     ],
-    color: "accent",
+    accent: "border-os2-mint/40 bg-os2-mint/[0.04]",
+    iconBg: "bg-os2-mint/15 text-foreground/70",
   },
   {
     icon: ShieldCheck,
@@ -54,21 +58,10 @@ const roles: Role[] = [
       "• En ekstern leverandør udvalgt via udbud",
       "Skal afklares i fællesskabet som del af governanceprocessen",
     ],
-    color: "muted",
+    accent: "border-os2-grey bg-os2-surface/50",
+    iconBg: "bg-os2-surface text-muted-foreground",
   },
 ];
-
-const colorMap = {
-  primary: "border-primary/25 bg-primary/[0.03]",
-  accent: "border-accent/25 bg-accent/[0.03]",
-  muted: "border-border bg-muted/30",
-} as const;
-
-const iconBgMap = {
-  primary: "bg-primary/10 text-primary",
-  accent: "bg-accent/10 text-accent",
-  muted: "bg-muted text-muted-foreground",
-} as const;
 
 const GovernanceCard = ({ role, index }: { role: Role; index: number }) => {
   const ref = useScrollReveal<HTMLDivElement>(index * 90);
@@ -78,20 +71,20 @@ const GovernanceCard = ({ role, index }: { role: Role; index: number }) => {
     <div
       ref={ref}
       className={cn(
-        "scroll-reveal rounded-xl border p-5 shadow-sm transition-shadow duration-200 hover:shadow-md",
-        colorMap[role.color]
+        "scroll-reveal rounded-lg border p-5 transition-all duration-200 hover:shadow-[0_2px_8px_hsl(210_45%_70%/0.06)]",
+        role.accent
       )}
     >
-      <div className="flex items-center gap-3 mb-3">
-        <span className={cn("flex h-9 w-9 items-center justify-center rounded-lg", iconBgMap[role.color])}>
-          <Icon className="h-4.5 w-4.5" />
+      <div className="flex items-center gap-3 mb-4">
+        <span className={cn("flex h-9 w-9 items-center justify-center rounded-lg", role.iconBg)}>
+          <Icon className="h-4 w-4" />
         </span>
         <h3 className="text-sm font-semibold text-foreground">{role.actor}</h3>
       </div>
-      <ul className="space-y-1.5">
+      <ul className="space-y-2">
         {role.responsibilities.map((r) => (
-          <li key={r} className="flex gap-2 text-xs leading-relaxed text-muted-foreground">
-            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/30" />
+          <li key={r} className="flex gap-2 text-[13px] leading-relaxed text-muted-foreground">
+            <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-os2-blue/30" />
             {r}
           </li>
         ))}
@@ -105,7 +98,7 @@ const GovernanceSection = () => {
   const introRef = useScrollReveal<HTMLParagraphElement>(60);
 
   return (
-    <section className="px-6 py-20 sm:px-12 md:py-28">
+    <section className="bg-os2-surface px-6 py-24 sm:px-12 md:py-32">
       <div className="mx-auto max-w-3xl">
         <h2
           ref={headingRef}
@@ -115,14 +108,14 @@ const GovernanceSection = () => {
         </h2>
         <p
           ref={introRef}
-          className="scroll-reveal mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base"
+          className="scroll-reveal mt-4 max-w-xl text-sm leading-[1.7] text-muted-foreground sm:text-base"
         >
           Klart ejerskab og tydelige ansvarsområder sikrer, at kerneproduktet
           vedligeholdes, udvikles og driftes bæredygtigt på tværs af
           økosystemet.
         </p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
           {roles.map((role, i) => (
             <GovernanceCard key={role.actor} role={role} index={i} />
           ))}
