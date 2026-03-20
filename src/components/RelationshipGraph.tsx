@@ -736,6 +736,8 @@ const RelationshipGraph = () => {
               </div>
             );
           })()}
+        </DialogContent>
+      </Dialog>
 
       {/* Legend */}
       <div className="mt-3 flex flex-wrap justify-center gap-4 text-[11px] text-muted-foreground">
