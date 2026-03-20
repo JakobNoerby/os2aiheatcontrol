@@ -674,6 +674,69 @@ const RelationshipGraph = () => {
         </DialogContent>
       </Dialog>
 
+      {/* Node editor dialog */}
+      <Dialog open={!!editingNode} onOpenChange={(open) => { if (!open) setEditingNode(null); }}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm">Redigér node-label</DialogTitle>
+          </DialogHeader>
+          {editingNode && (() => {
+            const node = nodes.find((n) => n.id === editingNode);
+            if (!node) return null;
+            return (
+              <div className="space-y-4">
+                <div>
+                  <label className="text-[10px] text-muted-foreground mb-1 block uppercase tracking-wide">Label</label>
+                  <input
+                    type="text"
+                    value={editingNodeLabel}
+                    onChange={(e) => setEditingNodeLabel(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") saveNodeLabel(); }}
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    autoFocus
+                  />
+                </div>
+                <div>
+                  <p className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wide">Eller vælg fra palette</p>
+                  <div className="max-h-40 overflow-y-auto flex flex-wrap gap-1.5">
+                    {palette.map((p) => (
+                      <button
+                        key={p.label}
+                        onClick={() => {
+                          setEditingNodeLabel(p.label);
+                          setNodesWrapped((prev) => prev.map((n) => n.id === editingNode ? { ...n, label: p.label, ontology: p.ontology } : n));
+                          setEditingNode(null);
+                        }}
+                        className={cn(
+                          "rounded-md border px-2 py-1 text-[11px] font-mono transition-colors active:scale-[0.97]",
+                          node.label === p.label
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border bg-background text-foreground hover:bg-muted"
+                        )}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={saveNodeLabel}
+                    className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 active:scale-[0.97]"
+                  >
+                    <Check className="h-3 w-3" /> Gem
+                  </button>
+                  <button
+                    onClick={() => deleteNode(editingNode)}
+                    className="inline-flex items-center gap-1 rounded-md border border-destructive/30 bg-destructive/5 px-2 py-1.5 text-xs font-medium text-destructive hover:bg-destructive/10 active:scale-[0.97]"
+                  >
+                    <Trash2 className="h-3 w-3" /> Slet node
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
+
       {/* Legend */}
       <div className="mt-3 flex flex-wrap justify-center gap-4 text-[11px] text-muted-foreground">
         {(["rec", "brick", "os2"] as const).map((key) => (
