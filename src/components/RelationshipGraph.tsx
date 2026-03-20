@@ -1,7 +1,8 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
-import { Plus, Trash2, X, GripVertical } from "lucide-react";
+import { Plus, Trash2, X, GripVertical, Save, Loader2, Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
