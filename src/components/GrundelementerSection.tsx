@@ -121,4 +121,4 @@ const GrundelementerSection = () => {
   );
 };
 
-export default CorePartsSection;
+export default GrundelementerSection;
