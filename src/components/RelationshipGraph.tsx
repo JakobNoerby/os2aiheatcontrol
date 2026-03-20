@@ -328,7 +328,11 @@ const RelationshipGraph = () => {
   /* --- Change edge label --- */
   const changeEdgeLabel = useCallback((edgeId: string, newLabel: string) => {
     setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, label: newLabel } : e)));
-    setEditingEdge(null);
+  }, []);
+
+  /* --- Change edge endpoints --- */
+  const changeEdgeEndpoint = useCallback((edgeId: string, field: "from" | "to", nodeId: string) => {
+    setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, [field]: nodeId } : e)));
   }, []);
 
   /* --- Click background to deselect --- */
@@ -588,9 +592,36 @@ const RelationshipGraph = () => {
                 <X className="h-3.5 w-3.5 text-muted-foreground" />
               </button>
             </div>
-            <p className="text-[11px] text-muted-foreground mb-2 font-mono">
-              {nodeMap[edge.from]?.label} → {nodeMap[edge.to]?.label}
-            </p>
+            <p className="text-[10px] text-muted-foreground mb-3 uppercase tracking-wide">Endpoints</p>
+            <div className="flex flex-col gap-2 mb-3 sm:flex-row sm:items-center sm:gap-3">
+              <div className="flex-1">
+                <label className="text-[10px] text-muted-foreground mb-1 block">Fra</label>
+                <select
+                  value={edge.from}
+                  onChange={(e) => changeEdgeEndpoint(edge.id, "from", e.target.value)}
+                  className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-[11px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  {nodes.map((n) => (
+                    <option key={n.id} value={n.id}>{n.label}</option>
+                  ))}
+                </select>
+              </div>
+              <span className="text-muted-foreground text-xs hidden sm:block pt-4">→</span>
+              <div className="flex-1">
+                <label className="text-[10px] text-muted-foreground mb-1 block">Til</label>
+                <select
+                  value={edge.to}
+                  onChange={(e) => changeEdgeEndpoint(edge.id, "to", e.target.value)}
+                  className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-[11px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  {nodes.map((n) => (
+                    <option key={n.id} value={n.id}>{n.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <p className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wide">Relationstype</p>
             <div className="flex flex-wrap gap-1.5 mb-3">
               {relationLabels.map((rel) => (
                 <button
