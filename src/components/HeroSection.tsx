@@ -55,16 +55,12 @@ const HeroSection = () => {
 
           {/* Right column — clean logo area */}
           <div className="hidden items-center justify-center md:flex">
-            <div className="relative flex h-64 w-full flex-col items-center justify-center gap-6 rounded-2xl border border-os2-grey bg-os2-surface/60">
+            <div className="relative flex h-64 w-full flex-col items-center justify-center rounded-2xl border border-os2-grey bg-os2-surface/60">
               <img
                 src={os2Logo}
                 alt="OS2 — offentligt digitaliseringsfællesskab"
                 className="h-16 w-auto"
               />
-              <div className="flex items-center gap-4 text-os2-blue/40">
-                <Building2 className="h-8 w-8" />
-                <Thermometer className="h-8 w-8" />
-              </div>
             </div>
           </div>
         </div>
