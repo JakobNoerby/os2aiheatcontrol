@@ -1,68 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* OS2 Visual Identity — restrained, civic, Scandinavian */
+/* OS2 Visual Identity — calm, civic, Scandinavian */
 
 @layer base {
   :root {
-    /* #050505 → near-black ink */
-    --foreground: 0 0% 2%;
+    /* #000000 */
+    --foreground: 0 0% 0%;
     /* #FFFFFF */
     --background: 0 0% 100%;
 
-    /* #F2F7F7 → very light blue-grey */
-    --muted: 180 18% 96%;
-    --muted-foreground: 200 8% 42%;
+    /* #F8F8F8 */
+    --muted: 0 0% 97.3%;
+    --muted-foreground: 0 0% 40%;
 
     /* Cards: white */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 2%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 2%;
+    --popover-foreground: 0 0% 0%;
 
-    /* #8EB3DA → dusty blue */
-    --primary: 210 45% 70%;
+    /* #88B0D8 → dusty blue */
+    --primary: 210 46% 69%;
     --primary-foreground: 0 0% 100%;
 
-    /* #F2F7F7 secondary */
-    --secondary: 180 18% 96%;
-    --secondary-foreground: 0 0% 2%;
+    /* #F8F8F8 */
+    --secondary: 0 0% 97.3%;
+    --secondary-foreground: 0 0% 0%;
 
-    /* #BAD9DB → soft mint/teal */
-    --accent: 183 30% 77%;
-    --accent-foreground: 0 0% 2%;
+    /* #C0D8D8 → soft mint */
+    --accent: 180 22% 80%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 65% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    /* #D7DCDD → light UI grey */
-    --border: 195 6% 85%;
-    --input: 195 6% 85%;
-    --ring: 210 45% 70%;
+    /* #D0D0D0 */
+    --border: 0 0% 81.6%;
+    --input: 0 0% 81.6%;
+    --ring: 210 46% 69%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
     /* Sidebar */
-    --sidebar-background: 180 18% 96%;
-    --sidebar-foreground: 0 0% 2%;
-    --sidebar-primary: 210 45% 70%;
+    --sidebar-background: 0 0% 97.3%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 210 46% 69%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 183 30% 77%;
-    --sidebar-accent-foreground: 0 0% 2%;
-    --sidebar-border: 195 6% 85%;
-    --sidebar-ring: 210 45% 70%;
+    --sidebar-accent: 180 22% 80%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 81.6%;
+    --sidebar-ring: 210 46% 69%;
 
     /* Custom OS2 tokens */
-    --os2-ink: 0 0% 2%;
-    --os2-blue: 210 45% 70%;
-    --os2-mint: 183 30% 77%;
-    --os2-beige: 28 48% 78%;
-    --os2-grey: 195 6% 85%;
-    --os2-surface: 180 18% 96%;
+    --os2-ink: 0 0% 0%;
+    --os2-blue: 210 46% 69%;
+    --os2-mint: 180 22% 80%;
+    --os2-beige: 28 40% 77%;
+    --os2-grey: 0 0% 81.6%;
+    --os2-surface: 0 0% 97.3%;
   }
 }
 
@@ -73,11 +73,11 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', 'Source Sans 3', Arial, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', 'Source Sans 3', Arial, sans-serif;
     letter-spacing: -0.01em;
   }
 }
