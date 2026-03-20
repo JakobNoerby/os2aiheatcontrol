@@ -286,11 +286,13 @@ const RelationshipGraph = () => {
   }, []);
 
   /* --- Click background to deselect --- */
-  const handleBgClick = useCallback(() => {
-    if (!dragging) {
+  const handleBgClick = useCallback((e: React.MouseEvent) => {
+    // Only deselect if the click target is the SVG itself or the background
+    if (dragging) return;
+    if (e.target === e.currentTarget || (e.target as Element).tagName === "svg") {
       setSelected(null);
-      setEdgeMode(null);
       setEditingEdge(null);
+      // Don't reset edgeMode on background click — let user click nodes
     }
   }, [dragging]);
 
