@@ -1,4 +1,5 @@
 import { Building2, Thermometer } from "lucide-react";
+import os2Logo from "@/assets/os2-logo.png";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const HeroSection = () => {
