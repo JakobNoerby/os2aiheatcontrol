@@ -327,7 +327,7 @@ const RelationshipGraph = () => {
 
   /* --- Change edge label --- */
   const changeEdgeLabel = useCallback((edgeId: string, newLabel: string) => {
-    setEdges((prev) => prev.map((e) => (e.id === edgeId ? { ...e, label: newLabel } : e)));
+    setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, label: newLabel } : e)));
     setEditingEdge(null);
   }, []);
 
