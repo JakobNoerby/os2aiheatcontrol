@@ -260,7 +260,7 @@ const RelationshipGraph = () => {
     (e: React.PointerEvent) => {
       if (!dragging) return;
       const p = svgPoint(e.clientX, e.clientY);
-      setNodes((prev) =>
+      setNodesWrapped((prev) =>
         prev.map((n) =>
           n.id === dragging
             ? { ...n, x: Math.round(p.x - dragOffset.current.dx), y: Math.round(p.y - dragOffset.current.dy) }
