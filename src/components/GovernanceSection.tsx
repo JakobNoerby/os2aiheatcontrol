@@ -45,12 +45,14 @@ const roles: Role[] = [
   },
   {
     icon: ShieldCheck,
-    actor: "Driftsorganisationen",
+    actor: "Driftsorganisationen (afklares)",
     responsibilities: [
       "Varetager central drift af fælles infrastruktur (dataplatform, API-gateway)",
-      "Monitorerer oppetid, sikkerhed og performance",
-      "Håndterer incident management og eskalering",
-      "Koordinerer opdateringer og releases med OS2-fællesskabet",
+      "Driftsmodellen er et åbent punkt — mulige modeller inkluderer:",
+      "• OS2-fællesskabet via fælles driftsaftale (som fx OS2kitos)",
+      "• En udpeget kommune, der hoster på vegne af de øvrige",
+      "• En ekstern leverandør udvalgt via udbud",
+      "Skal afklares i fællesskabet som del af governanceprocessen",
     ],
     color: "muted",
   },
