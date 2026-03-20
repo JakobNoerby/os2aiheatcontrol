@@ -37,10 +37,11 @@ const roles: Role[] = [
   },
   {
     icon: Wrench,
-    actor: "Leverandører (CTS/IoT)",
+    actor: "Leverandører (CTS/IoT & software)",
     responsibilities: [
       "Udvikler og vedligeholder egne connectors til den åbne platform",
       "Tilbyder installation, drift, support og avancerede modeller som kommerciel service",
+      "Udvikler software, algoritmer og optimeringsløsninger oven på kerneproduktet",
       "Overholder connector-specifikationer og kvalitetskrav fra OS2",
       "Bidrager til fælles test- og certificeringsproces",
     ],
