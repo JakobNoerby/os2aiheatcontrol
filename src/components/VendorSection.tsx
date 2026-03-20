@@ -12,7 +12,7 @@ const paths: VendorPath[] = [
     icon: Wrench,
     title: "Connectors & integration",
     description:
-      "Byg integrationer til proprietære CTS- og IoT-systemer — fx Schneider, Siemens, Honeywell — og gør dem tilgængelige for alle kommuner.",
+      "Leverandører af proprietære CTS- og IoT-systemer forventes selv at udvikle og vedligeholde connectors til den åbne platform — fx Schneider, Siemens og Honeywell.",
   },
   {
     icon: HeadsetIcon,
