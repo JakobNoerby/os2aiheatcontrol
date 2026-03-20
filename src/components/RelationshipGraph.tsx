@@ -1,7 +1,8 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
-import { Plus, Trash2, X, GripVertical } from "lucide-react";
+import { Plus, Trash2, X, GripVertical, Save, Loader2, Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -154,13 +155,58 @@ const RelationshipGraph = () => {
 
   const [nodes, setNodes] = useState<GraphNode[]>(defaultNodes);
   const [edges, setEdges] = useState<GraphEdge[]>(defaultEdges);
+  const [loaded, setLoaded] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveOk, setSaveOk] = useState(false);
+  const [dirty, setDirty] = useState(false);
 
   // Interaction state
   const [selected, setSelected] = useState<string | null>(null);
   const [dragging, setDragging] = useState<string | null>(null);
   const [showPalette, setShowPalette] = useState(false);
-  const [edgeMode, setEdgeMode] = useState<string | null>(null); // source node id
+  const [edgeMode, setEdgeMode] = useState<string | null>(null);
   const [editingEdge, setEditingEdge] = useState<string | null>(null);
+
+  // Load diagram from database on mount
+  useEffect(() => {
+    async function load() {
+      const { data } = await supabase
+        .from("diagrams")
+        .select("nodes, edges")
+        .eq("id", "default")
+        .single();
+      if (data && Array.isArray(data.nodes) && (data.nodes as unknown as GraphNode[]).length > 0) {
+        setNodes(data.nodes as unknown as GraphNode[]);
+        setEdges(data.edges as unknown as GraphEdge[]);
+      }
+      setLoaded(true);
+    }
+    load();
+  }, []);
+
+  // Mark dirty on changes (after initial load)
+  const setNodesWrapped = useCallback((updater: React.SetStateAction<GraphNode[]>) => {
+    setNodes(updater);
+    if (loaded) setDirty(true);
+  }, [loaded]);
+
+  const setEdgesWrapped = useCallback((updater: React.SetStateAction<GraphEdge[]>) => {
+    setEdges(updater);
+    if (loaded) setDirty(true);
+  }, [loaded]);
+
+  // Save to database
+  const saveDiagram = useCallback(async () => {
+    setSaving(true);
+    await supabase
+      .from("diagrams")
+      .update({ nodes: JSON.parse(JSON.stringify(nodes)), edges: JSON.parse(JSON.stringify(edges)), updated_at: new Date().toISOString() })
+      .eq("id", "default");
+    setSaving(false);
+    setSaveOk(true);
+    setDirty(false);
+    setTimeout(() => setSaveOk(false), 2000);
+  }, [nodes, edges]);
 
   const svgRef = useRef<SVGSVGElement>(null);
   const dragOffset = useRef({ dx: 0, dy: 0 });
@@ -214,7 +260,7 @@ const RelationshipGraph = () => {
     (e: React.PointerEvent) => {
       if (!dragging) return;
       const p = svgPoint(e.clientX, e.clientY);
-      setNodes((prev) =>
+      setNodesWrapped((prev) =>
         prev.map((n) =>
           n.id === dragging
             ? { ...n, x: Math.round(p.x - dragOffset.current.dx), y: Math.round(p.y - dragOffset.current.dy) }
@@ -235,7 +281,7 @@ const RelationshipGraph = () => {
       const id = nextId("node");
       const cx = (vbW / 2) + minX - NODE_W / 2 + Math.random() * 40 - 20;
       const cy = (vbH / 2) + minY - NODE_H / 2 + Math.random() * 40 - 20;
-      setNodes((prev) => [
+      setNodesWrapped((prev) => [
         ...prev,
         { id, label: item.label, ontology: item.ontology, x: Math.round(cx), y: Math.round(cy) },
       ]);
@@ -248,8 +294,8 @@ const RelationshipGraph = () => {
   /* --- Delete node --- */
   const deleteNode = useCallback(
     (nodeId: string) => {
-      setNodes((prev) => prev.filter((n) => n.id !== nodeId));
-      setEdges((prev) => prev.filter((e) => e.from !== nodeId && e.to !== nodeId));
+      setNodesWrapped((prev) => prev.filter((n) => n.id !== nodeId));
+      setEdgesWrapped((prev) => prev.filter((e) => e.from !== nodeId && e.to !== nodeId));
       setSelected(null);
     },
     []
@@ -264,7 +310,7 @@ const RelationshipGraph = () => {
         return;
       }
       // create edge
-      setEdges((prev) => [
+      setEdgesWrapped((prev) => [
         ...prev,
         { id: nextId("edge"), from: edgeMode, to: nodeId, label: "hasPoint" },
       ]);
@@ -275,13 +321,13 @@ const RelationshipGraph = () => {
 
   /* --- Delete edge --- */
   const deleteEdge = useCallback((edgeId: string) => {
-    setEdges((prev) => prev.filter((e) => e.id !== edgeId));
+    setEdgesWrapped((prev) => prev.filter((e) => e.id !== edgeId));
     setEditingEdge(null);
   }, []);
 
   /* --- Change edge label --- */
   const changeEdgeLabel = useCallback((edgeId: string, newLabel: string) => {
-    setEdges((prev) => prev.map((e) => (e.id === edgeId ? { ...e, label: newLabel } : e)));
+    setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, label: newLabel } : e)));
     setEditingEdge(null);
   }, []);
 
@@ -349,6 +395,23 @@ const RelationshipGraph = () => {
             <Trash2 className="h-3.5 w-3.5" /> Slet valgt
           </button>
         )}
+
+        {/* Save button */}
+        <button
+          onClick={saveDiagram}
+          disabled={saving || !dirty}
+          className={cn(
+            "inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium shadow-sm transition-all active:scale-[0.97]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            dirty
+              ? "border-primary/30 bg-primary/5 text-primary hover:bg-primary/10"
+              : "border-border bg-card text-muted-foreground",
+            saveOk && "border-green-500/30 bg-green-500/5 text-green-700"
+          )}
+        >
+          {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : saveOk ? <Check className="h-3.5 w-3.5" /> : <Save className="h-3.5 w-3.5" />}
+          {saving ? "Gemmer…" : saveOk ? "Gemt!" : "Gem diagram"}
+        </button>
 
         {edgeMode && edgeMode !== "__waiting__" && (
           <span className="text-xs text-muted-foreground animate-pulse">
