@@ -200,7 +200,7 @@ const RelationshipGraph = () => {
     setSaving(true);
     await supabase
       .from("diagrams")
-      .update({ nodes: nodes as unknown as Record<string, unknown>[], edges: edges as unknown as Record<string, unknown>[], updated_at: new Date().toISOString() })
+      .update({ nodes: JSON.parse(JSON.stringify(nodes)), edges: JSON.parse(JSON.stringify(edges)), updated_at: new Date().toISOString() })
       .eq("id", "default");
     setSaving(false);
     setSaveOk(true);
