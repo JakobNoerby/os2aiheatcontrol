@@ -155,13 +155,58 @@ const RelationshipGraph = () => {
 
   const [nodes, setNodes] = useState<GraphNode[]>(defaultNodes);
   const [edges, setEdges] = useState<GraphEdge[]>(defaultEdges);
+  const [loaded, setLoaded] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveOk, setSaveOk] = useState(false);
+  const [dirty, setDirty] = useState(false);
 
   // Interaction state
   const [selected, setSelected] = useState<string | null>(null);
   const [dragging, setDragging] = useState<string | null>(null);
   const [showPalette, setShowPalette] = useState(false);
-  const [edgeMode, setEdgeMode] = useState<string | null>(null); // source node id
+  const [edgeMode, setEdgeMode] = useState<string | null>(null);
   const [editingEdge, setEditingEdge] = useState<string | null>(null);
+
+  // Load diagram from database on mount
+  useEffect(() => {
+    async function load() {
+      const { data } = await supabase
+        .from("diagrams")
+        .select("nodes, edges")
+        .eq("id", "default")
+        .single();
+      if (data && Array.isArray(data.nodes) && (data.nodes as GraphNode[]).length > 0) {
+        setNodes(data.nodes as GraphNode[]);
+        setEdges(data.edges as GraphEdge[]);
+      }
+      setLoaded(true);
+    }
+    load();
+  }, []);
+
+  // Mark dirty on changes (after initial load)
+  const setNodesWrapped = useCallback((updater: React.SetStateAction<GraphNode[]>) => {
+    setNodes(updater);
+    if (loaded) setDirty(true);
+  }, [loaded]);
+
+  const setEdgesWrapped = useCallback((updater: React.SetStateAction<GraphEdge[]>) => {
+    setEdges(updater);
+    if (loaded) setDirty(true);
+  }, [loaded]);
+
+  // Save to database
+  const saveDiagram = useCallback(async () => {
+    setSaving(true);
+    await supabase
+      .from("diagrams")
+      .update({ nodes: nodes as unknown as Record<string, unknown>[], edges: edges as unknown as Record<string, unknown>[], updated_at: new Date().toISOString() })
+      .eq("id", "default");
+    setSaving(false);
+    setSaveOk(true);
+    setDirty(false);
+    setTimeout(() => setSaveOk(false), 2000);
+  }, [nodes, edges]);
 
   const svgRef = useRef<SVGSVGElement>(null);
   const dragOffset = useRef({ dx: 0, dy: 0 });
