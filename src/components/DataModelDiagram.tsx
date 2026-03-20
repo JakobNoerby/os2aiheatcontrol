@@ -118,10 +118,6 @@ const DataModelDiagram = () => {
   const headingRef = useScrollReveal<HTMLHeadingElement>();
   const introRef = useScrollReveal<HTMLParagraphElement>(60);
 
-  const structure = entities.slice(0, 2);
-  const dynamic = entities.slice(2, 5);
-  const control = entities.slice(5);
-
   return (
     <section className="bg-muted/30 px-6 py-20 sm:px-12 md:py-28">
       <div className="mx-auto max-w-4xl">
@@ -146,53 +142,6 @@ const DataModelDiagram = () => {
           — åbne ontologier for bygningsdata. OS2-specifikke styringsklasser
           udvider standarden for kommunal varmestyring.
         </p>
-
-        {/* Legend */}
-        <div className="scroll-reveal mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
-          {(["rec", "brick", "os2"] as const).map((key) => {
-            const b = ontologyBadge[key];
-            return (
-              <span key={key} className="flex items-center gap-1.5">
-                <span className={cn("rounded px-1.5 py-0.5 text-[10px] font-medium", b.className)}>{b.label}</span>
-                {key === "rec" && "RealEstateCore"}
-                {key === "brick" && "Brick Schema"}
-                {key === "os2" && "OS2-udvidelse"}
-              </span>
-            );
-          })}
-        </div>
-
-        <div className="mt-10 space-y-8">
-          {/* Structure — RealEstateCore */}
-          <div>
-            <GroupLabel>Struktur (RealEstateCore)</GroupLabel>
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
-              {structure.map((e, i) => (
-                <EntityCard key={e.name} entity={e} index={i} />
-              ))}
-            </div>
-          </div>
-
-          {/* Dynamic data — Brick */}
-          <div>
-            <GroupLabel>Sensordata & tidsserier (Brick Schema)</GroupLabel>
-            <div className="mt-2 grid gap-3 sm:grid-cols-3">
-              {dynamic.map((e, i) => (
-                <EntityCard key={e.name} entity={e} index={i + 2} />
-              ))}
-            </div>
-          </div>
-
-          {/* Control — OS2 extension */}
-          <div>
-            <GroupLabel>Styring (OS2-udvidelse)</GroupLabel>
-            <div className="mt-2 grid gap-3 sm:grid-cols-3">
-              {control.map((e, i) => (
-                <EntityCard key={e.name} entity={e} index={i + 5} />
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Visual relationship graph */}
         <RelationshipGraph />
