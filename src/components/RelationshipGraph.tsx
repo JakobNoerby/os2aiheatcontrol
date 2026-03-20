@@ -477,11 +477,14 @@ const RelationshipGraph = () => {
                   } else if (edgeMode && edgeMode !== node.id) {
                     e.stopPropagation();
                     handleNodeClick(node.id);
-                  } else {
+                  } else if (!edgeMode) {
                     handlePointerDown(node.id, e);
                   }
                 }}
-                className={cn("cursor-grab", dragging === node.id && "cursor-grabbing")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={cn("cursor-grab", dragging === node.id && "cursor-grabbing", edgeMode && "cursor-pointer")}
               >
                 <rect
                   x={node.x} y={node.y} width={NODE_W} height={NODE_H} rx={8}
