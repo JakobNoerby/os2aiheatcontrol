@@ -328,7 +328,11 @@ const RelationshipGraph = () => {
   /* --- Change edge label --- */
   const changeEdgeLabel = useCallback((edgeId: string, newLabel: string) => {
     setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, label: newLabel } : e)));
-    setEditingEdge(null);
+  }, []);
+
+  /* --- Change edge endpoints --- */
+  const changeEdgeEndpoint = useCallback((edgeId: string, field: "from" | "to", nodeId: string) => {
+    setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, [field]: nodeId } : e)));
   }, []);
 
   /* --- Click background to deselect --- */
