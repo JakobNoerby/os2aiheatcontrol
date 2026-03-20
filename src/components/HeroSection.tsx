@@ -51,6 +51,7 @@ const HeroSection = () => {
               <div className="flex items-center gap-4 text-muted-foreground/30">
                 <Building2 className="h-10 w-10" />
                 <Thermometer className="h-10 w-10" />
+              </div>
             </div>
           </div>
         </div>
