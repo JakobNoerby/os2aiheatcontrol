@@ -396,6 +396,23 @@ const RelationshipGraph = () => {
           </button>
         )}
 
+        {/* Save button */}
+        <button
+          onClick={saveDiagram}
+          disabled={saving || !dirty}
+          className={cn(
+            "inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium shadow-sm transition-all active:scale-[0.97]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            dirty
+              ? "border-primary/30 bg-primary/5 text-primary hover:bg-primary/10"
+              : "border-border bg-card text-muted-foreground",
+            saveOk && "border-green-500/30 bg-green-500/5 text-green-700"
+          )}
+        >
+          {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : saveOk ? <Check className="h-3.5 w-3.5" /> : <Save className="h-3.5 w-3.5" />}
+          {saving ? "Gemmer…" : saveOk ? "Gemt!" : "Gem diagram"}
+        </button>
+
         {edgeMode && edgeMode !== "__waiting__" && (
           <span className="text-xs text-muted-foreground animate-pulse">
             Klik på mål-node…
