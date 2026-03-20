@@ -338,14 +338,27 @@ const RelationshipGraph = () => {
     setEdgesWrapped((prev) => prev.map((e) => (e.id === edgeId ? { ...e, [field]: nodeId } : e)));
   }, []);
 
+  /* --- Open node editor --- */
+  const openNodeEditor = useCallback((nodeId: string) => {
+    const node = nodes.find((n) => n.id === nodeId);
+    if (!node) return;
+    setEditingNode(nodeId);
+    setEditingNodeLabel(node.label);
+  }, [nodes]);
+
+  /* --- Save node label --- */
+  const saveNodeLabel = useCallback(() => {
+    if (!editingNode || !editingNodeLabel.trim()) return;
+    setNodesWrapped((prev) => prev.map((n) => n.id === editingNode ? { ...n, label: editingNodeLabel.trim() } : n));
+    setEditingNode(null);
+  }, [editingNode, editingNodeLabel]);
+
   /* --- Click background to deselect --- */
   const handleBgClick = useCallback((e: React.MouseEvent) => {
-    // Only deselect if the click target is the SVG itself or the background
     if (dragging) return;
     if (e.target === e.currentTarget || (e.target as Element).tagName === "svg") {
       setSelected(null);
       setEditingEdge(null);
-      // Don't reset edgeMode on background click — let user click nodes
     }
   }, [dragging]);
 
