@@ -13,7 +13,7 @@ const Index = () => (
     <Navbar />
     <HeroSection />
     <div id="intro"><IntroSection /></div>
-    <div id="kernedele"><CorePartsSection /></div>
+    <div id="grundelementer"><CorePartsSection /></div>
     <div id="arkitektur"><ArchitectureDiagram /></div>
     <div id="leverandoerer"><VendorSection /></div>
     <div id="governance"><GovernanceSection /></div>

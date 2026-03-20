@@ -4,7 +4,7 @@ import os2Logo from "@/assets/os2-logo.png";
 
 const navItems = [
   { label: "Introduktion", href: "#intro" },
-  { label: "Kernedele", href: "#kernedele" },
+  { label: "Grundelementer", href: "#grundelementer" },
   { label: "Arkitektur", href: "#arkitektur" },
   { label: "Leverandører", href: "#leverandoerer" },
   { label: "Governance", href: "#governance" },
