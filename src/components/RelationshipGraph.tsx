@@ -175,9 +175,9 @@ const RelationshipGraph = () => {
         .select("nodes, edges")
         .eq("id", "default")
         .single();
-      if (data && Array.isArray(data.nodes) && (data.nodes as GraphNode[]).length > 0) {
-        setNodes(data.nodes as GraphNode[]);
-        setEdges(data.edges as GraphEdge[]);
+      if (data && Array.isArray(data.nodes) && (data.nodes as unknown as GraphNode[]).length > 0) {
+        setNodes(data.nodes as unknown as GraphNode[]);
+        setEdges(data.edges as unknown as GraphEdge[]);
       }
       setLoaded(true);
     }
