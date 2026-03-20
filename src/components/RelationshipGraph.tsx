@@ -755,7 +755,7 @@ const RelationshipGraph = () => {
       </div>
 
       <p className="mt-2 text-center text-[10px] text-muted-foreground/50">
-        Træk noder for at flytte · Klik for at vælge · Brug værktøjslinjen til at tilføje klasser og forbindelser
+        Træk noder for at flytte · Dobbeltklik for at redigere · Brug værktøjslinjen til at tilføje klasser og forbindelser
       </p>
     </div>
   );
