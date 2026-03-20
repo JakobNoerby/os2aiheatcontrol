@@ -109,7 +109,7 @@ const CorePartsSection = () => {
           ref={headingRef}
           className="scroll-reveal text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
         >
-          De fire kernedele
+          De fire grundelementer
         </h2>
         <div className="mt-8 flex flex-col gap-4">
           {parts.map((part, i) => (
