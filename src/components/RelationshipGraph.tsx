@@ -572,6 +572,10 @@ const RelationshipGraph = () => {
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
+                onDoubleClick={(e) => {
+                  e.stopPropagation();
+                  if (!edgeMode) openNodeEditor(node.id);
+                }}
                 className={cn("cursor-grab", dragging === node.id && "cursor-grabbing", edgeMode && "cursor-pointer")}
               >
                 <rect
