@@ -30,14 +30,13 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/95 shadow-sm backdrop-blur-md"
+          ? "bg-white/95 shadow-[0_1px_0_hsl(var(--border))] backdrop-blur-sm"
           : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3 sm:px-12">
-        {/* Logo */}
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 sm:px-12">
         <a
           href="#"
           onClick={(e) => {
@@ -50,12 +49,12 @@ const Navbar = () => {
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-0.5 md:flex">
           {navItems.map((item) => (
             <li key={item.href}>
               <button
                 onClick={() => handleClick(item.href)}
-                className="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-[0.97]"
+                className="rounded-md px-3 py-1.5 text-[13px] font-medium text-foreground/70 transition-colors hover:text-foreground hover:bg-os2-surface active:scale-[0.97]"
               >
                 {item.label}
               </button>
@@ -66,7 +65,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="flex h-8 w-8 flex-col items-center justify-center gap-1 rounded-md md:hidden hover:bg-muted active:scale-[0.95]"
+          className="flex h-8 w-8 flex-col items-center justify-center gap-1 rounded-md md:hidden hover:bg-os2-surface active:scale-[0.95]"
           aria-label="Toggle menu"
         >
           <span
@@ -93,16 +92,16 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={cn(
-          "overflow-hidden border-b border-border bg-background/95 backdrop-blur-md transition-[max-height] duration-300 md:hidden",
-          mobileOpen ? "max-h-80" : "max-h-0 border-b-0"
+          "overflow-hidden border-b bg-white/95 backdrop-blur-sm transition-[max-height] duration-300 md:hidden",
+          mobileOpen ? "max-h-80 border-border" : "max-h-0 border-transparent"
         )}
       >
-        <ul className="flex flex-col gap-1 px-6 pb-4 pt-1">
+        <ul className="flex flex-col gap-0.5 px-6 pb-4 pt-1">
           {navItems.map((item) => (
             <li key={item.href}>
               <button
                 onClick={() => handleClick(item.href)}
-                className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-foreground/70 transition-colors hover:text-foreground hover:bg-os2-surface"
               >
                 {item.label}
               </button>

@@ -55,13 +55,14 @@ const CorePartCard = ({ part, index }: { part: CorePart; index: number }) => {
       ref={ref}
       onClick={() => setOpen((v) => !v)}
       className={cn(
-        "scroll-reveal group w-full rounded-xl border border-border bg-card p-6 text-left shadow-sm transition-shadow duration-200 hover:shadow-md",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "scroll-reveal group w-full rounded-lg border border-os2-grey bg-white p-6 text-left transition-all duration-200",
+        "hover:border-os2-blue/40 hover:shadow-[0_2px_8px_hsl(210_45%_70%/0.08)]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-os2-blue focus-visible:ring-offset-2",
         "active:scale-[0.98]"
       )}
     >
       <div className="flex items-start gap-4">
-        <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-os2-surface text-os2-blue">
           <Icon className="h-5 w-5" />
         </span>
 
@@ -84,7 +85,9 @@ const CorePartCard = ({ part, index }: { part: CorePart; index: number }) => {
           <div
             className={cn(
               "grid transition-all duration-300 ease-out",
-              open ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              open
+                ? "mt-3 grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0"
             )}
           >
             <div className="overflow-hidden">
@@ -103,7 +106,7 @@ const GrundelementerSection = () => {
   const headingRef = useScrollReveal<HTMLHeadingElement>();
 
   return (
-    <section className="px-6 py-20 sm:px-12 md:py-28">
+    <section className="px-6 py-24 sm:px-12 md:py-32">
       <div className="mx-auto max-w-2xl">
         <h2
           ref={headingRef}
@@ -111,7 +114,7 @@ const GrundelementerSection = () => {
         >
           De fire grundelementer
         </h2>
-        <div className="mt-8 flex flex-col gap-4">
+        <div className="mt-10 flex flex-col gap-4">
           {parts.map((part, i) => (
             <CorePartCard key={part.title} part={part} index={i} />
           ))}
