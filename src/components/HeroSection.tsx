@@ -1,4 +1,5 @@
 import { Building2, Thermometer } from "lucide-react";
+import os2Logo from "@/assets/os2-logo.png";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const HeroSection = () => {
@@ -45,9 +46,12 @@ const HeroSection = () => {
 
           {/* Right column — decorative illustration area */}
           <div className="hidden items-center justify-center md:flex">
-            <div className="relative flex h-64 w-full items-center justify-center rounded-2xl bg-secondary">
-              <Building2 className="h-20 w-20 text-primary/20" />
-              <Thermometer className="absolute bottom-8 right-10 h-12 w-12 text-accent/40" />
+            <div className="relative flex h-64 w-full flex-col items-center justify-center gap-6 rounded-2xl bg-secondary">
+              <img src={os2Logo} alt="OS2 — offentligt digitaliseringsfællesskab" className="h-16 w-auto" />
+              <div className="flex items-center gap-4 text-muted-foreground/30">
+                <Building2 className="h-10 w-10" />
+                <Thermometer className="h-10 w-10" />
+              </div>
             </div>
           </div>
         </div>
