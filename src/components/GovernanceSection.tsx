@@ -113,7 +113,9 @@ const GovernanceSection = () => {
         >
           Klart ejerskab og tydelige ansvarsområder sikrer, at kerneproduktet
           vedligeholdes, udvikles og driftes bæredygtigt på tværs af
-          økosystemet.
+          økosystemet. Governance dækker hele livscyklussen — fra
+          datakontrakter og kvalitetskrav til versionering, sikkerhed og
+          løbende vedligehold af den fælles standard.
         </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2">

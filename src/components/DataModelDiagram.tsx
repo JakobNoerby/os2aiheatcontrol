@@ -38,7 +38,11 @@ const DataModelDiagram = () => {
             RealEstateCore
           </a>{" "}
           — åbne ontologier for bygningsdata. OS2-specifikke styringsklasser
-          udvider standarden for kommunal varmestyring.
+          udvider standarden for kommunal varmestyring. Ved at basere
+          datamodellen på etablerede, åbne ontologier undgår løsningen
+          proprietære dataformater og sikrer, at bygningsdata kan deles,
+          beriges og genbruges på tværs af systemer og leverandører — en
+          fælles &lsquo;ordbog&rsquo; for bygningsdata.
         </p>
 
         <RelationshipGraph />
