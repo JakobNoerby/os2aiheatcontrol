@@ -17,7 +17,7 @@ const parts: CorePart[] = [
     summary:
       "En fælles datamodel for de minimumsdata, der er nødvendige for intelligent varmestyring.",
     detail:
-      "Historiske data, rumtemperatur og vejrdata udgør fundamentet for at kunne arbejde ensartet, sammenligneligt og skalerbart på tværs af kommuner og bygninger. Datamodellen definerer fælles strukturer, så data kan deles og genbruges på tværs af installationer.",
+      "Historiske data, rumtemperatur og vejrdata udgør fundamentet for at kunne arbejde ensartet, sammenligneligt og skalerbart på tværs af kommuner og bygninger. Datamodellen standardiserer formater, begreber og semantik på tværs af bygninger og kommuner — så data ikke blot indsamles, men kan forstås og sammenlignes ensartet.",
   },
   {
     icon: Cog,
