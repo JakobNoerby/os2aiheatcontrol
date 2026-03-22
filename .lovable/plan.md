@@ -1,42 +1,29 @@
-# Uddyb beskrivelser på tværs af sektioner
 
-Brugeren ønsker mere dybde omkring fire temaer: fælles datamodel/standardisering, Brick+REC som "fælles stikontakt", connector-specifikationer, og governance/livscyklus. Disse temaer er allerede spredt over flere sektioner, men beskrivelserne er korte og mangler den bredere kontekst om *hvorfor* standardisering er afgørende (jf. AI Award-opslaget).
 
-## Ændringer
+# Tilføj strøm-analogi visualisering
 
-### 1. IntroSection — tilføj standardiserings-narrativ
+Tilføj en visuel analogi-sektion der viser parallellen mellem el-infrastruktur og OS2's datainfrastruktur — side om side. Placeres i `ArchitectureDiagram.tsx` under den eksisterende arkitektur-flow som en supplerende illustration.
 
-Tilføj et tredje afsnit efter de eksisterende to, der forankrer produktet i den bredere pointe om standardisering som forudsætning for skalering. Kort og sagligt — ikke et citat, men budskabet destilleret:
+## Design
 
-> *Ligesom standardiserede stikontakter, internetprotokoller og regnskabsformater er forudsætningen for, at teknologi kan skalere, bygger OS2 AI Heat Control på åbne standarder og fælles semantik. Det er fundamentet, der gør løsningen genbrugelig, sammenlignelig og leverandøruafhængig.*
+To parallelle flow-diagrammer i samme stil som det eksisterende (cirkler med ikoner og pile):
 
-### 2. GrundelementerSection — uddyb detail-tekster
+**Strøm-analogi:**
+Kraftværk → Elnet → Stikontakt → Apparat
 
-**Datafundamentet** — udvid detail med reference til standardisering af formater og semantik:
+**OS2-parallel:**
+Bygning → Connectors → Fælles datamodel → Løsning
 
-> Tilføj: "Datamodellen standardiserer formater, begreber og semantik på tværs af bygninger og kommuner — så data ikke blot indsamles, men kan forstås og sammenlignes ensartet."
+En kort overskrift over de to rækker, f.eks. *"Standardisering er forudsætningen"*, og en diskret label på hver række ("Strøminfrastruktur" / "Datainfrastruktur").
 
-**Connector-laget** — udvid detail med connector-specifikationer og leverandørtilkobling:
+## Teknisk tilgang
 
-> Tilføj: "Connector-specifikationerne fungerer som en åben kontrakt: de definerer præcist, hvilke data der skal leveres, i hvilket format og med hvilken frekvens. Det gør det muligt for leverandører af CTS- og IoT-systemer at koble sig på platformen uden unødig tredjeparts integration."
-
-### 3. DataModelDiagram — uddyb Brick+REC-beskrivelsen
-
-Udvid intro-teksten under "Datamodellen" med en ekstra sætning der forklarer *hvorfor* åbne ontologier er valgt:
-
-> Tilføj efter nuværende tekst: "Ved at basere datamodellen på etablerede, åbne ontologier undgår løsningen proprietære dataformater og sikrer, at bygningsdata kan deles, beriges og genbruges på tværs af systemer og leverandører — en fælles 'ordbog' for bygningsdata."
-
-### 4. GovernanceSection — uddyb intro-teksten
-
-Udvid intro-afsnittet med en sætning om livscyklus og kvalitetskrav:
-
-> Udvid til: "Klart ejerskab og tydelige ansvarsområder sikrer, at kerneproduktet vedligeholdes, udvikles og driftes bæredygtigt på tværs af økosystemet. Governance dækker hele livscyklussen — fra datakontrakter og kvalitetskrav til versionering, sikkerhed og løbende vedligehold af den fælles standard."
+- Udvid `ArchitectureDiagram.tsx` med en ny sektion under den eksisterende flow
+- Genbruger `Step` og `Arrow` komponenterne med passende ikoner (Zap, Network, Plug, Laptop for strøm; Building2, Cable, Database, Cog for data)
+- Samme visuelle stil — cirkel-ikoner, pile, scroll-reveal
+- Responsiv: vandret på desktop, lodret på mobil
+- Adskilt fra hoveddiagrammet med lidt ekstra spacing og en lille overskrift
 
 ## Berørte filer
+- `src/components/ArchitectureDiagram.tsx` — tilføj analogi-sektion
 
-- `src/components/IntroSection.tsx` — nyt afsnit
-- `src/components/GrundelementerSection.tsx` — opdater detail-tekst for Datafundamentet og Connector-laget
-- `src/components/DataModelDiagram.tsx` — udvid intro-tekst
-- `src/components/GovernanceSection.tsx` — udvid intro-tekst
-
-Alle ændringer er rent tekstmæssige — ingen strukturelle eller visuelle ændringer.
