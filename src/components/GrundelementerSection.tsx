@@ -33,7 +33,7 @@ const parts: CorePart[] = [
     summary:
       "Standardiserede integrationer til CTS- og IoT-systemer samt eksterne datakilder.",
     detail:
-      "Connector-laget gør det muligt at koble lokale bygningsinstallationer ind i en fælles ramme og reducerer afhængigheden af proprietære løsninger. Det omfatter også integrationer til offentlige services og vejrtjenester.",
+      "Connector-laget gør det muligt at koble lokale bygningsinstallationer ind i en fælles ramme og reducerer afhængigheden af proprietære løsninger. Connector-specifikationerne fungerer som en åben kontrakt: de definerer præcist, hvilke data der skal leveres, i hvilket format og med hvilken frekvens. Det gør det muligt for leverandører af CTS- og IoT-systemer at koble sig på platformen uden unødig tredjeparts integration.",
   },
   {
     icon: ShieldCheck,
