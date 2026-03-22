@@ -1,4 +1,4 @@
-import { Building2, Cable, Database, Cog, Thermometer, Activity } from "lucide-react";
+import { Building2, Cable, Database, Cog, Thermometer, Activity, Zap, Network, Plug, Laptop } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface StepProps {
@@ -14,6 +14,20 @@ const steps: StepProps[] = [
   { icon: Cog, label: "AI-regulator", delay: 240 },
   { icon: Activity, label: "Styring", delay: 320 },
   { icon: Thermometer, label: "Rumvarme", delay: 400 },
+];
+
+const powerSteps: StepProps[] = [
+  { icon: Zap, label: "Kraftværk", delay: 0 },
+  { icon: Network, label: "Elnet", delay: 80 },
+  { icon: Plug, label: "Stikkontakt", delay: 160 },
+  { icon: Laptop, label: "Apparat", delay: 240 },
+];
+
+const dataSteps: StepProps[] = [
+  { icon: Building2, label: "Bygning", delay: 0 },
+  { icon: Cable, label: "Connectors", delay: 80 },
+  { icon: Database, label: "Fælles datamodel", delay: 160 },
+  { icon: Cog, label: "Løsning", delay: 240 },
 ];
 
 const Step = ({ icon: Icon, label, delay }: StepProps) => {
@@ -36,8 +50,46 @@ const Arrow = () => (
   </div>
 );
 
+const VerticalArrow = () => (
+  <div className="flex flex-col items-center">
+    <div className="h-5 w-px bg-os2-grey" />
+    <div className="h-0 w-0 border-x-[4px] border-t-[6px] border-x-transparent border-t-os2-grey" />
+  </div>
+);
+
+const FlowRow = ({ steps: rowSteps, label }: { steps: StepProps[]; label: string }) => {
+  const labelRef = useScrollReveal<HTMLSpanElement>();
+
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <span ref={labelRef} className="scroll-reveal text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        {label}
+      </span>
+      {/* Desktop */}
+      <div className="hidden items-center justify-center gap-0 sm:flex">
+        {rowSteps.map((step, i) => (
+          <div key={step.label} className="flex items-center">
+            <Step {...step} />
+            {i < rowSteps.length - 1 && <Arrow />}
+          </div>
+        ))}
+      </div>
+      {/* Mobile */}
+      <div className="flex flex-col items-center gap-3 sm:hidden">
+        {rowSteps.map((step, i) => (
+          <div key={step.label} className="flex flex-col items-center">
+            <Step {...step} />
+            {i < rowSteps.length - 1 && <VerticalArrow />}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ArchitectureDiagram = () => {
   const headingRef = useScrollReveal<HTMLHeadingElement>();
+  const analogyHeadingRef = useScrollReveal<HTMLHeadingElement>();
 
   return (
     <section className="bg-os2-surface px-6 py-24 sm:px-12 md:py-32">
@@ -64,14 +116,28 @@ const ArchitectureDiagram = () => {
           {steps.map((step, i) => (
             <div key={step.label} className="flex flex-col items-center">
               <Step {...step} />
-              {i < steps.length - 1 && (
-                <div className="mt-2 flex flex-col items-center">
-                  <div className="h-5 w-px bg-os2-grey" />
-                  <div className="h-0 w-0 border-x-[4px] border-t-[6px] border-x-transparent border-t-os2-grey" />
-                </div>
-              )}
+              {i < steps.length - 1 && <VerticalArrow />}
             </div>
           ))}
+        </div>
+
+        {/* Analogi-sektion */}
+        <div className="mt-20 border-t border-os2-grey/30 pt-16">
+          <h3
+            ref={analogyHeadingRef}
+            className="scroll-reveal mb-10 text-center text-xl font-semibold tracking-tight text-foreground sm:text-2xl"
+          >
+            Standardisering er forudsætningen
+          </h3>
+
+          <div className="flex flex-col gap-10">
+            <FlowRow steps={powerSteps} label="Strøminfrastruktur" />
+            <FlowRow steps={dataSteps} label="Datainfrastruktur" />
+          </div>
+
+          <p className="scroll-reveal mx-auto mt-8 max-w-xl text-center text-sm text-muted-foreground">
+            Ligesom stikkontakten standardiserer adgangen til strøm, standardiserer den fælles datamodel adgangen til bygningsdata.
+          </p>
         </div>
       </div>
     </section>
