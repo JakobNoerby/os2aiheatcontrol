@@ -1,45 +1,42 @@
-# OS2 AI Heat Control — Informationsside
+# Uddyb beskrivelser på tværs af sektioner
 
-## Overblik
+Brugeren ønsker mere dybde omkring fire temaer: fælles datamodel/standardisering, Brick+REC som "fælles stikontakt", connector-specifikationer, og governance/livscyklus. Disse temaer er allerede spredt over flere sektioner, men beskrivelserne er korte og mangler den bredere kontekst om *hvorfor* standardisering er afgørende (jf. AI Award-opslaget).
 
-En minimalistisk, professionel landing page på dansk, der præsenterer OS2 AI Heat Control's kerneprodukt med fokus på de 4 kernedele.
+## Ændringer
 
-## Sektioner
+### 1. IntroSection — tilføj standardiserings-narrativ
 
-### 1. Hero
+Tilføj et tredje afsnit efter de eksisterende to, der forankrer produktet i den bredere pointe om standardisering som forudsætning for skalering. Kort og sagligt — ikke et citat, men budskabet destilleret:
 
-- Overskrift: "OS2 AI Heat Control"
-- Undertekst: kort beskrivelse af kerneproduktet som open source, kommunalt ejet løsning
-- Subtil gradient baggrund i neutrale/blå toner
+> *Ligesom standardiserede stikontakter, internetprotokoller og regnskabsformater er forudsætningen for, at teknologi kan skalere, bygger OS2 AI Heat Control på åbne standarder og fælles semantik. Det er fundamentet, der gør løsningen genbrugelig, sammenlignelig og leverandøruafhængig.*
 
-### 2. Kerneproduktet — Kort intro
+### 2. GrundelementerSection — uddyb detail-tekster
 
-- 1-2 afsnit der opsummerer hvad løsningen er og hvad den gør
-- Evt. et simpelt ikon/illustration af en bygning med varmeflow
+**Datafundamentet** — udvid detail med reference til standardisering af formater og semantik:
 
-### 3. De 4 kernedele — Hovedsektion
+> Tilføj: "Datamodellen standardiserer formater, begreber og semantik på tværs af bygninger og kommuner — så data ikke blot indsamles, men kan forstås og sammenlignes ensartet."
 
-Fire kort/cards med ikoner, hver repræsenterende:
+**Connector-laget** — udvid detail med connector-specifikationer og leverandørtilkobling:
 
-1. **Datafundamentet** — database-ikon, beskrivelse af fælles datamodel
-2. **Reguleringsmotoren** — gear/algoritme-ikon, beskrivelse af referencealgoritmen
-3. **Connector-laget** — forbindelses-ikon, CTS/IoT-integrationer
-4. **Implementerbarhed & drift** — skjold/check-ikon, kommunal driftsegnethed
+> Tilføj: "Connector-specifikationerne fungerer som en åben kontrakt: de definerer præcist, hvilke data der skal leveres, i hvilket format og med hvilken frekvens. Det gør det muligt for leverandører af CTS- og IoT-systemer at koble sig på platformen uden unødig tredjeparts integration."
 
-Hvert kort kan klikkes/udvides for at vise den detaljerede beskrivelse.
+### 3. DataModelDiagram — uddyb Brick+REC-beskrivelsen
 
-### 4. Arkitekturdiagram
+Udvid intro-teksten under "Datamodellen" med en ekstra sætning der forklarer *hvorfor* åbne ontologier er valgt:
 
-- Et simpelt visuelt diagram der viser hvordan de 4 dele hænger sammen (bygning → connectors → data → AI-regulator → styring → sensor → rumvarme)
+> Tilføj efter nuværende tekst: "Ved at basere datamodellen på etablerede, åbne ontologier undgår løsningen proprietære dataformater og sikrer, at bygningsdata kan deles, beriges og genbruges på tværs af systemer og leverandører — en fælles 'ordbog' for bygningsdata."
 
-### 5. Footer
+### 4. GovernanceSection — uddyb intro-teksten
 
-- Open source badge, OS2-reference
+Udvid intro-afsnittet med en sætning om livscyklus og kvalitetskrav:
 
-## Design
+> Udvid til: "Klart ejerskab og tydelige ansvarsområder sikrer, at kerneproduktet vedligeholdes, udvikles og driftes bæredygtigt på tværs af økosystemet. Governance dækker hele livscyklussen — fra datakontrakter og kvalitetskrav til versionering, sikkerhed og løbende vedligehold af den fælles standard."
 
-- Lyst tema, meget whitespace
-- Primærfarve: dæmpet blå (kommunal/professionel)
-- Lucide-ikoner
-- Fade-in animationer ved scroll
-- Responsivt layout
+## Berørte filer
+
+- `src/components/IntroSection.tsx` — nyt afsnit
+- `src/components/GrundelementerSection.tsx` — opdater detail-tekst for Datafundamentet og Connector-laget
+- `src/components/DataModelDiagram.tsx` — udvid intro-tekst
+- `src/components/GovernanceSection.tsx` — udvid intro-tekst
+
+Alle ændringer er rent tekstmæssige — ingen strukturelle eller visuelle ændringer.
