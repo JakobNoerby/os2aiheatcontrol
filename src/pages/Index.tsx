@@ -6,6 +6,7 @@ import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 import VendorSection from "@/components/VendorSection";
 import GovernanceSection from "@/components/GovernanceSection";
 import DataModelDiagram from "@/components/DataModelDiagram";
+import StandardAnalogySection from "@/components/StandardAnalogySection";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => (
@@ -18,6 +19,7 @@ const Index = () => (
     <div id="leverandoerer"><VendorSection /></div>
     <div id="governance"><GovernanceSection /></div>
     <div id="datamodel"><DataModelDiagram /></div>
+    <StandardAnalogySection />
     <FooterSection />
   </main>
 );
