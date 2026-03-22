@@ -26,6 +26,13 @@ const IntroSection = () => {
             varmeanlæggets setpunkter og varmekurver — inden for definerede
             tidsplaner og med sikker fallback.
           </p>
+          <p>
+            Ligesom standardiserede stikontakter, internetprotokoller og
+            regnskabsformater er forudsætningen for, at teknologi kan skalere,
+            bygger OS2 AI Heat Control på åbne standarder og fælles semantik.
+            Det er fundamentet, der gør løsningen genbrugelig, sammenlignelig
+            og leverandøruafhængig.
+          </p>
         </div>
       </div>
     </section>
