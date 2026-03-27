@@ -1,29 +1,40 @@
 
 
-# Tilføj strøm-analogi visualisering
+# Opdater indhold med mødefeedback
 
-Tilføj en visuel analogi-sektion der viser parallellen mellem el-infrastruktur og OS2's datainfrastruktur — side om side. Placeres i `ArchitectureDiagram.tsx` under den eksisterende arkitektur-flow som en supplerende illustration.
+Integrer mødekommentarerne direkte i de eksisterende tekster — som en naturlig del af beskrivelserne, ikke som separate noter.
 
-## Design
+## Ændringer
 
-To parallelle flow-diagrammer i samme stil som det eksisterende (cirkler med ikoner og pile):
+### 1. GrundelementerSection.tsx — opdater tekster
 
-**Strøm-analogi:**
-Kraftværk → Elnet → Stikontakt → Apparat
+**Datafundamentet** — udvid `detail`:
+- Tilføj at data fra CTS-anlæg på anvender-siden er en forudsætning for at produktet kan fungere
+- Tilføj at datamodellen skal opbygges så simpelt som muligt med modulær opbygning, med udgangspunkt i open source-standarder/ontologier som BrickSchema og Real EstateCore
+- Nævn at IoT Lab ved Aarhus Kommune arbejder med en datamodel i samarbejde med projektet
 
-**OS2-parallel:**
-Bygning → Connectors → Fælles datamodel → Løsning
+**Reguleringsmotoren** — opdater `summary` og `detail`:
+- Præcisér i summary at algoritmen sender prædiktive setpunkter til bygningsautomatik for fremløbstemperatur af varmesløjfer (radiator- og gulvvarmeanlæg)
+- Fremhæv fallback-plan som central del af styringsstrategien
 
-En kort overskrift over de to rækker, f.eks. *"Standardisering er forudsætningen"*, og en diskret label på hver række ("Strøminfrastruktur" / "Datainfrastruktur").
+**Connector-laget** — opdater `detail`:
+- Erstat nuværende sluttekst med: produktet kan udstille et API der sender og modtager data til referencealgoritmen, baseret på kendte komponenter
+- Tilføj at connector-laget har indbygget krav til datamodellering
 
-## Teknisk tilgang
+**Implementerbarhed & drift** — udvid `detail`:
+- Tilføj NIS2-compliance: der skal vurderes hvad der er kritisk infrastruktur
+- Cybersecurity-review skal planlægges senere i projektet
+- Løsningen skal kunne implementeres af flere leverandører med krav om:
+  - Dataportabilitet (flytte data til anden leverandør)
+  - OS2-fællesskabet som steward på GitHub
+  - Hosting ved OS2 med kommuner som tenants, med frihed til at beslutte hvor data opbevares
+  - Klar definition af kildekode for kommende udviklingspartnere
 
-- Udvid `ArchitectureDiagram.tsx` med en ny sektion under den eksisterende flow
-- Genbruger `Step` og `Arrow` komponenterne med passende ikoner (Zap, Network, Plug, Laptop for strøm; Building2, Cable, Database, Cog for data)
-- Samme visuelle stil — cirkel-ikoner, pile, scroll-reveal
-- Responsiv: vandret på desktop, lodret på mobil
-- Adskilt fra hoveddiagrammet med lidt ekstra spacing og en lille overskrift
+### 2. GovernanceSection.tsx — opdater driftsorganisation
+
+Opdater responsibilities for "Driftsorganisationen" med de konkrete krav fra mødet (dataportabilitet, GitHub stewardship, tenant-model, NIS2-vurdering) — formuleret som naturlige ansvarsområder.
 
 ## Berørte filer
-- `src/components/ArchitectureDiagram.tsx` — tilføj analogi-sektion
+- `src/components/GrundelementerSection.tsx` — opdater data-arrays
+- `src/components/GovernanceSection.tsx` — opdater responsibilities
 
