@@ -41,7 +41,7 @@ const parts: CorePart[] = [
     summary:
       "Kommunal driftsegnethed, cybersikkerhed og lave implementeringsomkostninger.",
     detail:
-      "Kerneproduktet skal ikke kun være teknisk velfunderet — det skal også kunne implementeres enkelt, driftes økonomisk og godkendes i kommunal praksis.\n\nDer skal tages stilling til NIS2-compliance, herunder en generel vurdering af, hvad der udgør kritisk infrastruktur i løsningen. Senere i projektet planlægges et cybersecurity-review af den samlede løsning.\n\nLøsningen skal kunne implementeres af flere leverandører med krav om fuld dataportabilitet mellem leverandører. OS2-fællesskabet fungerer som steward på GitHub-repositoryet, og der er mulighed for hosting ved OS2 med hver kommune som tenant — hvor kommunerne selv kan beslutte, hvor data opbevares.\n\nDefinitionen af opdateret kildekode skal være klar for kommende udviklingspartnere.",
+      "Kerneproduktet skal ikke kun være teknisk velfunderet — det skal også kunne implementeres enkelt, driftes økonomisk og godkendes i kommunal praksis.\n\nDer skal tages stilling til NIS2-compliance, herunder en generel vurdering af, hvad der udgør kritisk infrastruktur i løsningen. Senere i projektet planlægges et cybersecurity-review af den samlede løsning.\n\nLøsningen skal kunne implementeres af flere leverandører med krav om fuld dataportabilitet mellem leverandører. OS2-fællesskabet fungerer som steward på GitHub-repositoriet, og der er mulighed for hosting ved OS2 med hver kommune som tenant, hvor kommunerne selv kan beslutte, hvor data opbevares.\n\nDefinitionen af opdateret kildekode skal være klar for kommende udviklingspartnere.",
   },
 ];
 
