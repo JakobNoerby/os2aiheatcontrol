@@ -91,9 +91,17 @@ const CorePartCard = ({ part, index }: { part: CorePart; index: number }) => {
             )}
           >
             <div className="overflow-hidden">
-              <p className="text-sm leading-relaxed text-muted-foreground/80">
-                {part.detail}
-              </p>
+              {part.detail.split("\n\n").map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={cn(
+                    "text-sm leading-relaxed text-muted-foreground/80",
+                    i > 0 && "mt-2"
+                  )}
+                >
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </div>
         </div>
