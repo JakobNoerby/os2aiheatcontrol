@@ -17,7 +17,7 @@ const parts: CorePart[] = [
     summary:
       "En fælles datamodel for de minimumsdata, der er nødvendige for intelligent varmestyring.",
     detail:
-      "Data fra CTS-anlæg på anvender-siden er en forudsætning for, at produktet kan fungere. Historiske data, rumtemperatur og vejrdata udgør fundamentet for at kunne arbejde ensartet, sammenligneligt og skalerbart på tværs af kommuner og bygninger. Datamodellen standardiserer formater, begreber og semantik, så data ikke blot indsamles, men kan forstås og sammenlignes ensartet. Modellen skal opbygges så simpelt som muligt med modulær opbygning og tage udgangspunkt i open source-standarder og ontologier som BrickSchema og Real EstateCore. IoT Lab ved Aarhus Kommune arbejder parallelt med en datamodel, som projektet er i dialog med.",
+      "Data fra CTS-anlæg på anvendersiden er en forudsætning for, at produktet kan fungere. Historiske data, rumtemperatur og vejrdata udgør fundamentet for at kunne arbejde ensartet, sammenligneligt og skalerbart på tværs af kommuner og bygninger.\n\nDatamodellen standardiserer formater, begreber og semantik, så data ikke blot indsamles, men kan forstås og sammenlignes ensartet.\n\nModellen skal opbygges så simpelt som muligt med modulær opbygning og tage udgangspunkt i open source-standarder og ontologier som BrickSchema og Real Estate Core. IoT Lab ved Aarhus Kommune arbejder parallelt med en datamodel, som projektet er i dialog med.",
   },
   {
     icon: Cog,
@@ -25,7 +25,7 @@ const parts: CorePart[] = [
     summary:
       "En fælles referencealgoritme, som sender prædiktive setpunkter til bygningsautomatik for fremløbstemperatur af varmesløjfer (radiator- og gulvvarmeanlæg).",
     detail:
-      "Reguleringsmotoren anvender målt rumtemperatur, vejrdata, historik og tidsplaner til at beregne optimale setpunkter for fremløbstemperatur og varmekurver. En robust fallback-strategi er en central del af styringslogikken, så bygningerne altid har en sikker driftstilstand. Dermed er kerneproduktet ikke kun data og integrationer, men også en basal, fungerende styringslogik.",
+      "Reguleringsmotoren anvender målt rumtemperatur, vejrdata, historik og tidsplaner til at beregne optimale setpunkter for fremløbstemperatur og varmekurver.\n\nEn robust fallback-strategi er en central del af styringslogikken, så bygningerne altid har en sikker driftstilstand.\n\nDermed er kerneproduktet ikke kun data og integrationer, men også en basal, fungerende styringslogik.",
   },
   {
     icon: Cable,
@@ -33,15 +33,15 @@ const parts: CorePart[] = [
     summary:
       "Standardiserede integrationer til CTS- og IoT-systemer samt eksterne datakilder.",
     detail:
-      "Connector-laget gør det muligt at koble lokale bygningsinstallationer ind i en fælles ramme og reducerer afhængigheden af proprietære løsninger. Connector-specifikationerne fungerer som en åben kontrakt: de definerer præcist, hvilke data der skal leveres, i hvilket format og med hvilken frekvens. Det gør det transparent for leverandører at anvende løsningen i praksis. Løsningen bygger på kendte komponenter og kan udstille et API, der sender og modtager data til referencealgoritmen. Connector-laget har indbyggede krav til datamodellering.",
+      "Connector-laget gør det muligt at koble lokale bygningsinstallationer ind i en fælles ramme og reducerer afhængigheden af proprietære løsninger.\n\nConnector-specifikationerne fungerer som en åben kontrakt: de definerer præcist, hvilke data der skal leveres, i hvilket format og med hvilken frekvens. Det gør det transparent for leverandører at anvende løsningen i praksis.\n\nLøsningen bygger på kendte komponenter og kan udstille et API, der sender og modtager data til referencealgoritmen. Connector-laget har indbyggede krav til datamodellering.",
   },
   {
     icon: ShieldCheck,
-    title: "Implementerbarhed & drift",
+    title: "Implementerbarhed og drift",
     summary:
       "Kommunal driftsegnethed, cybersikkerhed og lave implementeringsomkostninger.",
     detail:
-      "Kerneproduktet skal ikke kun være teknisk velfunderet; det skal også kunne implementeres enkelt, driftes økonomisk og godkendes i kommunal praksis. Der skal tages stilling til NIS2-compliance, herunder en generel vurdering af, hvad der udgør kritisk infrastruktur i løsningen. Senere i projektet planlægges et cybersecurity-review af den samlede løsning. Løsningen skal kunne implementeres af flere leverandører, med krav om fuld dataportabilitet mellem leverandører, OS2-fællesskabet som steward på GitHub-repositoryet, og mulighed for hosting ved OS2 med hver kommune som tenant — hvor kommunerne selv kan beslutte, hvor data opbevares. Definitionen af opdateret kildekode skal være klar for kommende udviklingspartnere.",
+      "Kerneproduktet skal ikke kun være teknisk velfunderet — det skal også kunne implementeres enkelt, driftes økonomisk og godkendes i kommunal praksis.\n\nDer skal tages stilling til NIS2-compliance, herunder en generel vurdering af, hvad der udgør kritisk infrastruktur i løsningen. Senere i projektet planlægges et cybersecurity-review af den samlede løsning.\n\nLøsningen skal kunne implementeres af flere leverandører med krav om fuld dataportabilitet mellem leverandører. OS2-fællesskabet fungerer som steward på GitHub-repositoryet, og der er mulighed for hosting ved OS2 med hver kommune som tenant — hvor kommunerne selv kan beslutte, hvor data opbevares.\n\nDefinitionen af opdateret kildekode skal være klar for kommende udviklingspartnere.",
   },
 ];
 
