@@ -69,7 +69,7 @@ const VendorSection = () => {
           ref={introRef}
           className="scroll-reveal mt-4 max-w-xl text-sm leading-[1.7] text-muted-foreground sm:text-base"
         >
-          Kerneproduktet er åbent og skalerbart — markedet forventes at bygge
+          Kerneproduktet er åbent og skalerbart. Markedet forventes at bygge
           kommercielle services oven på den fælles platform.
         </p>
 
