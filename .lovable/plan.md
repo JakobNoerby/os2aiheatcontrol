@@ -1,40 +1,38 @@
+# Tilpas øvrige sektioner med ny viden
 
-
-# Opdater indhold med mødefeedback
-
-Integrer mødekommentarerne direkte i de eksisterende tekster — som en naturlig del af beskrivelserne, ikke som separate noter.
+Grundelementer og Governance er allerede opdateret. Nu skal resten af sektionerne afspejle den samme viden — prædiktive setpunkter, API-baseret connector-lag, multi-leverandør, NIS2, fallback osv.
 
 ## Ændringer
 
-### 1. GrundelementerSection.tsx — opdater tekster
+### 1. Navbar.tsx — fjern "Arkitektur"-link og omdøb "Leverandører"
 
-**Datafundamentet** — udvid `detail`:
-- Tilføj at data fra CTS-anlæg på anvender-siden er en forudsætning for at produktet kan fungere
-- Tilføj at datamodellen skal opbygges så simpelt som muligt med modulær opbygning, med udgangspunkt i open source-standarder/ontologier som BrickSchema og Real EstateCore
-- Nævn at IoT Lab ved Aarhus Kommune arbejder med en datamodel i samarbejde med projektet
+- Fjern `{ label: "Arkitektur", href: "#arkitektur" }` fra navItems (arkitektur-sektionen er allerede fjernet)
+- Omdøb "Leverandører" til "Markedet"
 
-**Reguleringsmotoren** — opdater `summary` og `detail`:
-- Præcisér i summary at algoritmen sender prædiktive setpunkter til bygningsautomatik for fremløbstemperatur af varmesløjfer (radiator- og gulvvarmeanlæg)
-- Fremhæv fallback-plan som central del af styringsstrategien
+### 2. HeroSection.tsx — præcisér undertekst
 
-**Connector-laget** — opdater `detail`:
-- Erstat nuværende sluttekst med: produktet kan udstille et API der sender og modtager data til referencealgoritmen, baseret på kendte komponenter
-- Tilføj at connector-laget har indbygget krav til datamodellering
+Opdater subtitle fra den nuværende generelle formulering til noget der afspejler de konkrete elementer: prædiktive setpunkter, fælles datamodel baseret på åbne ontologier, og en platform markedet kan bygge videre på.
 
-**Implementerbarhed & drift** — udvid `detail`:
-- Tilføj NIS2-compliance: der skal vurderes hvad der er kritisk infrastruktur
-- Cybersecurity-review skal planlægges senere i projektet
-- Løsningen skal kunne implementeres af flere leverandører med krav om:
-  - Dataportabilitet (flytte data til anden leverandør)
-  - OS2-fællesskabet som steward på GitHub
-  - Hosting ved OS2 med kommuner som tenants, med frihed til at beslutte hvor data opbevares
-  - Klar definition af kildekode for kommende udviklingspartnere
+### 3. IntroSection.tsx — opdater brødtekst
 
-### 2. GovernanceSection.tsx — opdater driftsorganisation
+- Afsnit 1: Tilføj at løsningen bygger på data fra CTS-anlæg og IoTs-sensorer, der sender prædiktive setpunkter til bygningsautomatik
+- Afsnit 2: Nævn at referencealgoritmen styrer fremløbstemperatur for varmesløjfer med robust fallback, og at connectors udstiller et API
+- Afsnit 3: Nævn BrickSchema/RealEstateCore som de konkrete standarder
 
-Opdater responsibilities for "Driftsorganisationen" med de konkrete krav fra mødet (dataportabilitet, GitHub stewardship, tenant-model, NIS2-vurdering) — formuleret som naturlige ansvarsområder.
+### 4. VendorSection.tsx — opdater intro-tekst og kort-beskrivelser
+
+- Intro: Tilpas til "markedet forventes at"-vinklen
+- "Connectors & integration": Præcisér at leverandører forventes selv at udvikle connectors efter de åbne connector-specifikationer
+- "Installation, drift & support": Tilføj at flere leverandører kan tilbyde dette (multi-leverandør)
+- "Avancerede modeller": Nævn at de bygger videre på referencealgoritmen for prædiktive setpunkter
+- "Analyse & dashboards": Nævn at det bygger på den fælles datamodel baseret på åbne ontologier
+
+
 
 ## Berørte filer
-- `src/components/GrundelementerSection.tsx` — opdater data-arrays
-- `src/components/GovernanceSection.tsx` — opdater responsibilities
 
+- `src/components/Navbar.tsx`
+- `src/components/HeroSection.tsx`
+- `src/components/IntroSection.tsx`
+- `src/components/VendorSection.tsx`
+- `src/components/DataModelDiagram.tsx`
