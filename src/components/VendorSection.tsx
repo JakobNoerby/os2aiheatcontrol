@@ -12,25 +12,25 @@ const paths: VendorPath[] = [
     icon: Wrench,
     title: "Connectors & integration",
     description:
-      "Leverandører af proprietære CTS- og IoT-systemer forventes selv at udvikle og vedligeholde connectors til den åbne platform — fx Schneider, Siemens og Honeywell.",
+      "Leverandører af CTS- og IoT-systemer forventes selv at udvikle og vedligeholde connectors efter de åbne connector-specifikationer og det standardiserede API.",
   },
   {
     icon: HeadsetIcon,
     title: "Installation, drift & support",
     description:
-      "Tilbyd lokal installation, løbende drift og support som service oven på det åbne kerneprodukt.",
+      "Flere leverandører kan tilbyde lokal installation, løbende drift og support som service oven på det åbne kerneprodukt — en multi-leverandør-model.",
   },
   {
     icon: BrainCircuit,
     title: "Avancerede modeller",
     description:
-      "Udvikl specialiserede AI/ML-algoritmer, der bygger videre på referencealgoritmen med mere avanceret optimering.",
+      "Udvikl specialiserede AI/ML-algoritmer, der bygger videre på referencealgoritmen for prædiktive setpunkter med mere avanceret optimering.",
   },
   {
     icon: BarChart3,
     title: "Analyse & dashboards",
     description:
-      "Skab rapportering, benchmarking og visualisering på tværs af bygninger baseret på det fælles datafundament.",
+      "Skab rapportering, benchmarking og visualisering på tværs af bygninger baseret på den fælles datamodel og åbne ontologier.",
   },
 ];
 
@@ -69,8 +69,8 @@ const VendorSection = () => {
           ref={introRef}
           className="scroll-reveal mt-4 max-w-xl text-sm leading-[1.7] text-muted-foreground sm:text-base"
         >
-          Kerneproduktet er åbent og skalerbart — markedet kan bygge videre med
-          kommercielle services oven på den fælles ramme.
+          Kerneproduktet er åbent og skalerbart — markedet forventes at bygge
+          kommercielle services oven på den fælles platform.
         </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2">
