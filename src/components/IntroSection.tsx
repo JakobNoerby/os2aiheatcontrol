@@ -15,23 +15,24 @@ const IntroSection = () => {
           style={{ textWrap: "pretty" } as React.CSSProperties}
         >
           <p>
-            OS2 AI Heat Control er en fælles digital infrastruktur, der gør det
-            muligt at indsamle, strukturere og anvende bygningsdata til
-            automatisk og driftsegnet varmestyring i kommunal praksis.
+            OS2 AI Heat Control er en fælles digital infrastruktur, der
+            indsamler og strukturerer data fra CTS-anlæg og IoT-sensorer og
+            anvender dem til prædiktiv varmestyring i kommunale bygninger.
           </p>
           <p>
-            Løsningen består af en fælles datamodel, standardiserede
-            integrationer til bygningens CTS- og IoT-systemer, relevante
-            eksterne datakilder og en referencealgoritme, der regulerer
-            varmeanlæggets setpunkter og varmekurver — inden for definerede
-            tidsplaner og med sikker fallback.
+            En referencealgoritme beregner prædiktive setpunkter for
+            fremløbstemperatur på varmesløjfer (radiator- og gulvvarmeanlæg)
+            — inden for definerede tidsplaner og med robust fallback.
+            Connectors udstiller et åbent API, så data kan sendes til og
+            modtages fra bygningsautomatikken.
           </p>
           <p>
-            Ligesom standardiserede stikontakter, internetprotokoller og
-            regnskabsformater er forudsætningen for, at teknologi kan skalere,
-            bygger OS2 AI Heat Control på åbne standarder og fælles semantik.
-            Det er fundamentet, der gør løsningen genbrugelig, sammenlignelig
-            og leverandøruafhængig.
+            Datamodellen bygger på de åbne ontologier{" "}
+            <strong>BrickSchema</strong> og <strong>RealEstateCore</strong>{" "}
+            — en fælles semantik, der gør løsningen genbrugelig,
+            sammenlignelig og leverandøruafhængig, ligesom standardiserede
+            stikontakter og internetprotokoller er forudsætningen for at
+            teknologi kan skalere.
           </p>
         </div>
       </div>

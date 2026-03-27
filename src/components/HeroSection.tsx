@@ -38,9 +38,9 @@ const HeroSection = () => {
               ref={subtitleRef}
               className="scroll-reveal mt-6 max-w-lg text-pretty text-base leading-[1.7] text-muted-foreground sm:text-lg"
             >
-              Intelligent varmestyring i kommunale bygninger — bygget på åbne
-              standarder, fælles data og en referencealgoritme, som markedet kan
-              bygge videre på.
+              Prædiktive setpunkter til kommunale varmeanlæg — bygget på en
+              fælles datamodel med åbne ontologier og en referencealgoritme,
+              som markedet kan bygge videre på.
             </p>
           </div>
 
