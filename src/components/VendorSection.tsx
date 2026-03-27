@@ -63,7 +63,7 @@ const VendorSection = () => {
           ref={headingRef}
           className="scroll-reveal text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
         >
-          For leverandører
+          Hvad forventes af markedet?
         </h2>
         <p
           ref={introRef}
