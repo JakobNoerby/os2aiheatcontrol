@@ -112,9 +112,10 @@ const GovernanceSection = () => {
           ref={introRef}
           className="scroll-reveal mt-4 max-w-xl text-sm leading-[1.7] text-muted-foreground sm:text-base"
         >
-          Ansvaret for løsningen er delt mellem fire aktører — OS2-fællesskabet,
-          kommunerne, leverandørerne og driftsorganisationen. Nedenfor er det
-          beskrevet, hvem der har ansvar for hvad.
+          OS2 AI Heat Control styres gennem en fælles governancemodel, hvor
+          ansvar og beslutningskompetence er tydeligt fordelt mellem fire aktører.
+          Modellen sikrer, at kerneproduktet udvikles åbent, at kvalitetskrav
+          overholdes, og at hver part har et klart mandat.
         </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2">
