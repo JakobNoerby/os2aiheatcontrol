@@ -112,11 +112,9 @@ const GovernanceSection = () => {
           ref={introRef}
           className="scroll-reveal mt-4 max-w-xl text-sm leading-[1.7] text-muted-foreground sm:text-base"
         >
-          Klart ejerskab og tydelige ansvarsområder sikrer, at kerneproduktet
-          vedligeholdes, udvikles og driftes bæredygtigt på tværs af
-          økosystemet. Governance dækker hele livscyklussen — fra
-          datakontrakter og kvalitetskrav til versionering, sikkerhed og
-          løbende vedligehold af den fælles standard.
+          Ansvaret for løsningen er delt mellem fire aktører — OS2-fællesskabet,
+          kommunerne, leverandørerne og driftsorganisationen. Nedenfor er det
+          beskrevet, hvem der har ansvar for hvad.
         </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2">
