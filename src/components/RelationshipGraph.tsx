@@ -88,15 +88,15 @@ const relationLabels = [
 /* ------------------------------------------------------------------ */
 
 const defaultNodes: GraphNode[] = [
-  { id: "building", label: "rec:Building", ontology: "rec", x: 260, y: 40 },
-  { id: "room", label: "rec:Room", ontology: "rec", x: 80, y: 150 },
-  { id: "sensor", label: "brick:Temperature_Sensor", ontology: "brick", x: 60, y: 290 },
-  { id: "weather", label: "brick:Weather_Station", ontology: "brick", x: 460, y: 140 },
-  { id: "timeseries", label: "brick:TimeseriesReference", ontology: "brick", x: 240, y: 390 },
-  { id: "hvac", label: "brick:HVAC_Zone", ontology: "brick", x: 260, y: 250 },
-  { id: "schedule", label: "os2:Schedule", ontology: "os2", x: 460, y: 280 },
-  { id: "setpoint", label: "os2:Setpoint", ontology: "os2", x: 460, y: 380 },
-  { id: "fallback", label: "os2:FallbackStrategy", ontology: "os2", x: 240, y: 500 },
+  { id: "room", label: "rec:Room", ontology: "rec", x: 200, y: 40 },
+  { id: "building", label: "rec:Building", ontology: "rec", x: 480, y: 40 },
+  { id: "hvac", label: "brick:HVAC_Zone", ontology: "brick", x: 80, y: 220 },
+  { id: "sensor", label: "brick:Temperature_Sensor", ontology: "brick", x: 320, y: 220 },
+  { id: "schedule", label: "os2:Schedule", ontology: "os2", x: 520, y: 220 },
+  { id: "weather", label: "brick:Weather_Station", ontology: "brick", x: 720, y: 220 },
+  { id: "setpoint", label: "os2:Setpoint", ontology: "os2", x: 20, y: 380 },
+  { id: "fallback", label: "os2:FallbackStrategy", ontology: "os2", x: 180, y: 380 },
+  { id: "timeseries", label: "brick:TimeseriesReference", ontology: "brick", x: 320, y: 380 },
 ];
 
 const defaultEdges: GraphEdge[] = [
