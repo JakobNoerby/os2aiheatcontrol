@@ -93,9 +93,10 @@ const defaultNodes: GraphNode[] = [
   { id: "sensor", label: "brick:Temperature_Sensor", ontology: "brick", x: 60, y: 290 },
   { id: "weather", label: "brick:Weather_Station", ontology: "brick", x: 460, y: 140 },
   { id: "timeseries", label: "brick:TimeseriesReference", ontology: "brick", x: 240, y: 390 },
+  { id: "hvac", label: "brick:HVAC_Zone", ontology: "brick", x: 260, y: 250 },
   { id: "schedule", label: "os2:Schedule", ontology: "os2", x: 460, y: 280 },
   { id: "setpoint", label: "os2:Setpoint", ontology: "os2", x: 460, y: 380 },
-  { id: "fallback", label: "os2:FallbackStrategy", ontology: "os2", x: 240, y: 490 },
+  { id: "fallback", label: "os2:FallbackStrategy", ontology: "os2", x: 240, y: 500 },
 ];
 
 const defaultEdges: GraphEdge[] = [
@@ -105,8 +106,10 @@ const defaultEdges: GraphEdge[] = [
   { id: "e4", from: "sensor", to: "timeseries", label: "hasTimeseriesId" },
   { id: "e5", from: "weather", to: "building", label: "monitors" },
   { id: "e6", from: "schedule", to: "building", label: "servesBuilding" },
-  { id: "e7", from: "setpoint", to: "building", label: "servesBuilding" },
-  { id: "e8", from: "fallback", to: "building", label: "servesBuilding" },
+  { id: "e7", from: "hvac", to: "room", label: "feeds" },
+  { id: "e8", from: "hvac", to: "building", label: "isPartOf" },
+  { id: "e9", from: "setpoint", to: "hvac", label: "controls" },
+  { id: "e10", from: "fallback", to: "hvac", label: "controls" },
 ];
 
 /* ------------------------------------------------------------------ */
